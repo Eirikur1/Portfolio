@@ -9,6 +9,7 @@ export interface Project {
   tags: string[];
   accent: string;
   image?: string;
+  video?: string;
   link?: string;
   featured: boolean;
   wip?: boolean;
@@ -17,6 +18,18 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '01',
+    title: 'WaterFinder',
+    category: 'Development',
+    year: '2026',
+    description: 'A React Native app for finding water refill stations nearby. Built in collaboration with a Danish student while studying in Spain. My first React Native project and a great learning experience.',
+    tags: ['React Native', 'Mobile', 'Design'],
+    accent: '#5182bc',
+    video: '/screenrecording.mp4',
+    link: 'https://www.figma.com/board/ZqjHmh8rNDLgYxnMSMZCTb/WaterFinder?node-id=1-5&t=gs0iNxG3TM8LnOKk-1',
+    featured: true,
+  },
+  {
+    id: '02',
     title: 'Pizzaport.is',
     category: 'Development',
     year: '2024',
@@ -29,7 +42,7 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: '02',
+    id: '03',
     title: 'Pizzaport Branding',
     category: 'Branding',
     year: '2024',
@@ -38,10 +51,11 @@ export const projects: Project[] = [
     tags: ['Design', 'Branding', 'Identity', 'Posters', 'Merch', 'Illustrator'],
     accent: '#e6bf98',
     image: '/d35dabf2-1.png',
+    link: 'https://www.figma.com/board/tUMWmYxgWVQC2bMbREdlbO/Untitled?node-id=1-2&t=sru4syRu5y6gakfK-1',
     featured: true,
   },
   {
-    id: '03',
+    id: '04',
     title: 'Recipe Finder',
     category: 'Development',
     year: '2025',
@@ -51,10 +65,10 @@ export const projects: Project[] = [
     accent: '#5182bc',
     image: '/menu-app.png',
     link: 'https://eirikur1.github.io/Hopaverkefni4/',
-    featured: true,
+    featured: false,
   },
   {
-    id: '04',
+    id: '05',
     title: 'Venuu',
     category: 'Development',
     year: '2025',
@@ -67,7 +81,7 @@ export const projects: Project[] = [
     featured: false,
   },
   {
-    id: '05',
+    id: '06',
     title: 'Krunk',
     category: 'Development',
     year: '2026',
@@ -77,18 +91,6 @@ export const projects: Project[] = [
     image: '/krunk-app.png',
     link: 'https://krunk-eight.vercel.app/login',
     featured: false,
-    wip: false,
-  },
-  {
-    id: '06',
-    title: 'Coming soon',
-    category: 'Development',
-    year: '2026',
-    description: 'Something new in the works. Check back soon.',
-    tags: [],
-    accent: '#5182bc',
-    featured: false,
-    wip: true,
   },
 ];
 

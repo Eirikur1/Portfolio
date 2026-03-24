@@ -30,7 +30,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       {/* Image / placeholder area */}
       <div className={styles.media}>
         <div className={styles.mediaInner} aria-hidden="true">
-          {project.image
+          {project.video
+            ? <video src={project.video} className={styles.projectVideo} autoPlay muted loop playsInline />
+            : project.image
             ? <img src={project.image} alt={project.title} className={styles.projectImage} />
             : <span className={styles.projectNumber}>{project.id}</span>
           }

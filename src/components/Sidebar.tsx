@@ -13,7 +13,7 @@ export default function Sidebar() {
     >
       {/* Avatar */}
       <div className={styles.avatar}>
-        <img src="/avatar.png" alt="Eiríkur Atli Karlsson" className={styles.avatarImg} />
+        <img src="/IMG_7741.jpg" alt="Eiríkur Atli Karlsson" className={styles.avatarImg} />
       </div>
 
       {/* Identity */}
