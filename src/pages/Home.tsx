@@ -45,6 +45,7 @@ export default function Home() {
                   'better experiences',
                   'something new',
                 ]}
+                color="var(--color-green)"
               />
             </motion.h1>
 

@@ -4,6 +4,7 @@ import { projects } from '../data/projects';
 import type { ProjectCategory } from '../data/projects';
 import Sidebar from '../components/Sidebar';
 import ProjectCard from '../components/ProjectCard';
+import Typewriter from '../components/Typewriter';
 import styles from './Projects.module.css';
 
 const categories: ('All' | ProjectCategory)[] = [
@@ -40,8 +41,8 @@ export default function Projects() {
               <p className={styles.eyebrow}>Portfolio</p>
               <h1 className={styles.heading}>
                 Things I've<br />
-                <span className={styles.headingAccent}>made</span>
-                <span className={styles.headingPeriod}>.</span>
+                <Typewriter words={['made', 'designed', 'engineered', 'built', 'shipped', 'crafted']} color="var(--color-green)" />
+                <span className={styles.headingPeriod}></span>
               </h1>
               <p className={styles.sub}>
                 A collection of projects spanning product design, development,

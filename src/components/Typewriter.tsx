@@ -5,6 +5,7 @@ interface TypewriterProps {
   words: string[];
   typingSpeed?: number;
   holdMs?: number;
+  color?: string;
 }
 
 const SWEEP_EASE: [number, number, number, number] = [0.2, 0, 0.3, 0.3];
@@ -23,7 +24,7 @@ const gradient = `
 
 type Phase = 'typing' | 'holding' | 'fading';
 
-export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000 }: TypewriterProps) {
+export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000, color = 'var(--color-text)' }: TypewriterProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [phase, setPhase] = useState<Phase>('typing');
@@ -70,7 +71,7 @@ export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000 }: T
       <AnimatePresence mode="wait">
         <motion.span
           key={`under-${wordIndex}`}
-          style={{ color: 'var(--color-text)' }}
+          style={{ color }}
           initial={{ opacity: 0 }}
           animate={{ opacity: phase === 'fading' ? 0 : 1 }}
           transition={

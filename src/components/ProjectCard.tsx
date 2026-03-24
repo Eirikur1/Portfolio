@@ -24,6 +24,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.16, 1, 0.3, 1],
       }}
       style={{ '--accent': project.accent } as React.CSSProperties}
+      onClick={() => project.link && window.open(project.link, '_blank')}
+      role={project.link ? 'link' : undefined}
     >
       {/* Image / placeholder area */}
       <div className={styles.media}>
