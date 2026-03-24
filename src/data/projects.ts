@@ -11,6 +11,7 @@ export interface Project {
   image?: string;
   link?: string;
   featured: boolean;
+  wip?: boolean;
 }
 
 export const projects: Project[] = [
@@ -67,25 +68,25 @@ export const projects: Project[] = [
   },
   {
     id: '05',
-    title: 'Terrain',
+    title: 'Coming soon',
     category: 'Design',
-    year: '2024',
-    description:
-      'Product design for an outdoor equipment e-commerce platform. Mobile-first, conversion-focused.',
-    tags: ['UX', 'Figma', 'Prototyping'],
+    year: '2025',
+    description: 'Something new in the works. Check back soon.',
+    tags: [],
     accent: '#e6bf98',
     featured: false,
+    wip: true,
   },
   {
     id: '06',
-    title: 'Chord',
+    title: 'Coming soon',
     category: 'Development',
-    year: '2023',
-    description:
-      'Collaborative playlist app with real-time sync. Built as a side project to explore multiplayer UX patterns.',
-    tags: ['Next.js', 'Supabase', 'TypeScript'],
+    year: '2025',
+    description: 'Something new in the works. Check back soon.',
+    tags: [],
     accent: '#5182bc',
     featured: false,
+    wip: true,
   },
 ];
 

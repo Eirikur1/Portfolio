@@ -35,6 +35,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             : <span className={styles.projectNumber}>{project.id}</span>
           }
         </div>
+        {project.wip && (
+          <span className={styles.wipBadge}>In progress</span>
+        )}
         <div className={styles.hoverOverlay} aria-hidden="true">
           <span className={styles.viewLabel}>View project →</span>
         </div>
