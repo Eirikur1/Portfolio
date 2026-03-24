@@ -38,7 +38,7 @@ export default function Sidebar() {
 
       {/* Skills */}
       <div className={styles.skills}>
-        <p className={styles.skillsLabel}>Expertise</p>
+        <p className={styles.skillsLabel}>Tools & Skills</p>
         <ul className={styles.skillsList}>
           {skills.map((skill) => (
             <li key={skill} className={styles.skillItem}>
