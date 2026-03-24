@@ -1,0 +1,132 @@
+import { useState, useEffect } from 'react'
+import { GuessInput } from './GuessInput'
+import { GuessList } from './GuessList'
+import { WorldMap } from './WorldMap'
+import { fetchCountries, countryList } from '../game-lib/countries'
+import { haversineDistance } from '../game-lib/haversine'
+import { getDirection } from '../game-lib/direction'
+import type { Country, CountryMap, Guess } from '../game-types/country'
+
+const MAX_GUESSES = 6
+
+function getTodayCountry(countries: Country[]): Country {
+  const today = new Date().toISOString().slice(0, 10)
+  const seed = today.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0)
+  return countries[seed % countries.length]
+}
+
+interface GameProps {
+  onBack: () => void
+}
+
+export function Game({ onBack }: GameProps) {
+  const [countries, setCountries] = useState<CountryMap | null>(null)
+  const [target, setTarget] = useState<Country | null>(null)
+  const [guesses, setGuesses] = useState<Guess[]>([])
+  const [won, setWon] = useState(false)
+
+  useEffect(() => {
+    fetchCountries().then((map) => {
+      setCountries(map)
+      setTarget(getTodayCountry(countryList(map)))
+    })
+  }, [])
+
+  const handleGuess = (country: Country) => {
+    if (!target || !countries) return
+    const distanceKm = haversineDistance(country.lat, country.lng, target.lat, target.lng)
+    const direction = getDirection(country.lat, country.lng, target.lat, target.lng)
+    setGuesses((prev) => [...prev, { country, distanceKm, direction }])
+    if (distanceKm === 0) setWon(true)
+  }
+
+  const gameOver = won || guesses.length >= MAX_GUESSES
+  const countryListArr = countries ? countryList(countries) : []
+
+  const distances: Record<string, number> = {}
+  guesses.forEach((g) => { distances[g.country.code] = g.distanceKm })
+
+  if (!countries || !target) {
+    return (
+      <div className="loading-screen">
+        <div className="loading-spinner" />
+        <p>Loading game…</p>
+      </div>
+    )
+  }
+
+  const remaining = MAX_GUESSES - guesses.length
+
+  return (
+    <div className="game">
+      <header className="game-header">
+        <div className="game-title-group">
+          <h1 className="game-title">
+            <span className="game-title-text">Country Guesser</span>
+          </h1>
+          <p className="game-subtitle">
+            {gameOver
+              ? won
+                ? `Solved in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}`
+                : 'Better luck tomorrow!'
+              : `${remaining} ${remaining === 1 ? 'guess' : 'guesses'} remaining`}
+          </p>
+        </div>
+
+        <div className="guess-pips" aria-label="Guess progress">
+          {Array.from({ length: MAX_GUESSES }).map((_, i) => (
+            <span
+              key={i}
+              className={`pip ${
+                i < guesses.length
+                  ? won && i === guesses.length - 1
+                    ? 'pip-win'
+                    : 'pip-used'
+                  : ''
+              }`}
+            />
+          ))}
+        </div>
+      </header>
+
+      <div className="game-body">
+        <div className="game-left">
+          {!gameOver && (
+            <GuessInput
+              countries={countryListArr}
+              onGuess={handleGuess}
+              disabled={false}
+            />
+          )}
+
+          <GuessList guesses={guesses} />
+
+          {gameOver && (
+            <div className={`game-over ${won ? 'game-over-won' : 'game-over-lost'}`} role="status">
+              <span className="game-over-emoji">{won ? '🎉' : '🌍'}</span>
+              <div>
+                <strong>{target.name}</strong>
+                <p>
+                  {won
+                    ? `Got it in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}!`
+                    : 'Try again tomorrow!'}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="game-right">
+          <div className="map-container">
+            <WorldMap
+              distances={distances}
+              targetCode={gameOver ? target.code : undefined}
+              focusCountry={guesses.length > 0 ? guesses[guesses.length - 1].country : undefined}
+            />
+          </div>
+          <p className="globe-hint">Drag to rotate · Scroll to zoom</p>
+        </div>
+      </div>
+    </div>
+  )
+}
