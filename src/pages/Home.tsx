@@ -42,9 +42,6 @@ export default function Home() {
                   'with intention',
                   'with purpose',
                   'for the web',
-                  'interfaces',
-                  'experiences',
-                  'the future',
                 ]}
                 color="var(--color-green)"
               />
