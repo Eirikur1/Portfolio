@@ -391,6 +391,7 @@
   cursor: grab;
   user-select: none;
   touch-action: none;
+  overscroll-behavior: none;
   background: var(--ocean);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }

@@ -133,7 +133,7 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
       el.removeEventListener('gesturechange', handleGestureChange as EventListener, true)
       el.removeEventListener('gestureend', handleGestureEnd, true)
     }
-  }, [handleWheel, handleGestureStart, handleGestureChange, handleGestureEnd])
+  }, [geojson, handleWheel, handleGestureStart, handleGestureChange, handleGestureEnd])
 
   if (!geojson) {
     return <div className="map-loading">Loading globe…</div>
