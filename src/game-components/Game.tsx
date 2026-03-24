@@ -7,7 +7,6 @@ import { haversineDistance } from '../game-lib/haversine'
 import { getDirection } from '../game-lib/direction'
 import type { Country, CountryMap, Guess } from '../game-types/country'
 
-const MAX_GUESSES = 6 // used only for pip display
 
 function getTodayCountry(countries: Country[]): Country {
   const today = new Date().toISOString().slice(0, 10)
@@ -19,7 +18,7 @@ interface GameProps {
   onBack: () => void
 }
 
-export function Game({ onBack }: GameProps) {
+export function Game({ onBack: _onBack }: GameProps) {
   const [countries, setCountries] = useState<CountryMap | null>(null)
   const [target, setTarget] = useState<Country | null>(null)
   const [guesses, setGuesses] = useState<Guess[]>([])
