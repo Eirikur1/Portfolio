@@ -158,8 +158,9 @@
 .contactInner {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
 }
 
 .contactHeading {
@@ -172,13 +173,13 @@
 }
 
 .contactSub {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--color-muted);
   line-height: 1.6;
 }
 
 .contactCta {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--color-orange);
   border-bottom: 1px solid var(--color-orange);
