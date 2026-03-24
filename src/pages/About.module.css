@@ -1,0 +1,305 @@
+.main {
+  min-height: 100vh;
+  padding-top: 140px;
+  padding-bottom: 160px;
+}
+
+/* ===== Hero ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 680px;
+  margin-bottom: 64px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(60px, 8vw, 100px);
+  letter-spacing: -3px;
+  line-height: 0.92;
+  color: var(--color-text);
+  text-transform: lowercase;
+}
+
+.headingAccent {
+  color: var(--color-green);
+  font-style: italic;
+}
+
+.headingPeriod {
+  color: var(--color-orange);
+}
+
+.bio {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+/* ===== Contact info row ===== */
+.contactInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 4px;
+}
+
+.contactDetail {
+  font-size: 13px;
+  color: var(--color-subtle);
+  transition: color var(--transition-fast);
+}
+
+a.contactDetail:hover {
+  color: var(--color-green);
+}
+
+/* ===== Divider ===== */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin: 64px 0;
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+/* ===== Timeline ===== */
+.timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.timelineItem:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.timelineLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  padding-top: 3px;
+}
+
+.period {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-subtle);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timelineRight {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.role {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.company {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-orange);
+}
+
+.roleDesc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+.location {
+  font-size: 11px;
+  color: var(--color-subtle);
+  letter-spacing: 0.02em;
+}
+
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.bullets li {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-muted);
+  padding-left: 14px;
+  position: relative;
+}
+
+.bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-subtle);
+  font-size: 12px;
+}
+
+/* ===== Skills grid ===== */
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skillPill {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.skillPill:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background: rgba(220, 60, 36, 0.08);
+}
+
+/* ===== Values grid ===== */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.valueCard {
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color var(--transition-fast), transform var(--transition-med);
+}
+
+.valueCard:hover {
+  border-color: var(--color-green);
+  transform: translateY(-4px);
+}
+
+.valueIndex {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-green);
+  letter-spacing: 0.05em;
+}
+
+.valueLabel {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+}
+
+.valueBody {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+/* ===== Contact ===== */
+.contact {
+  margin-top: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.contactHeading {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.contactAccent {
+  color: var(--color-green);
+  font-style: italic;
+}
+
+.contactCta {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--color-orange);
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.contactCta:hover {
+  color: var(--color-text);
+  border-color: var(--color-orange);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .timelineItem {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+}

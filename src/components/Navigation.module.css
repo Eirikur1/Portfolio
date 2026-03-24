@@ -1,0 +1,150 @@
+/* ===== Wordmark (top-left) ===== */
+.wordmark {
+  position: fixed;
+  top: 28px;
+  left: 40px;
+  z-index: 100;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.wordmark:hover {
+  color: var(--color-green);
+}
+
+.dot {
+  color: var(--color-green);
+}
+
+/* ===== Main nav (top-right) ===== */
+.nav {
+  position: fixed;
+  top: 28px;
+  right: 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-green);
+  transition: width var(--transition-med);
+}
+
+.link:hover {
+  color: var(--color-text);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.linkActive {
+  color: var(--color-text);
+}
+
+.linkActive::after {
+  width: 100%;
+}
+
+/* ===== CTA button (bottom-right) ===== */
+.cta {
+  position: fixed;
+  bottom: 32px;
+  right: 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: var(--color-green);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 2px solid var(--color-text);
+  box-shadow: 3px 3px 0px var(--color-text);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.cta:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--color-text);
+}
+
+.cta:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* ===== Social links (bottom-left) ===== */
+.socials {
+  position: fixed;
+  bottom: 32px;
+  left: 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.socialLink {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-subtle);
+  transition: color var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--color-text);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+  .wordmark {
+    top: 20px;
+    left: 20px;
+  }
+
+  .nav {
+    top: 20px;
+    right: 20px;
+    gap: 20px;
+  }
+
+  .cta {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .socials {
+    bottom: 20px;
+    left: 20px;
+    gap: 14px;
+  }
+}
