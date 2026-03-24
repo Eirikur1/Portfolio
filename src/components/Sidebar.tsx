@@ -13,12 +13,12 @@ export default function Sidebar() {
     >
       {/* Avatar */}
       <div className={styles.avatar}>
-        <img src="/avatar.png" alt="Eiríkur Karlsson" className={styles.avatarImg} />
+        <img src="/avatar.png" alt="Eiríkur Atli Karlsson" className={styles.avatarImg} />
       </div>
 
       {/* Identity */}
       <div className={styles.identity}>
-        <h2 className={styles.name}>Eiríkur Karlsson</h2>
+        <h2 className={styles.name}>Eiríkur Atli Karlsson</h2>
         <p className={styles.role}>
           Developer <span className={styles.amp}>&amp;</span> Designer
         </p>
