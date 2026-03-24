@@ -57,16 +57,7 @@ export default function Navigation() {
 
       {/* Bottom-left social links */}
       <div className={styles.socials}>
-        <a
-          href="https://eiki.studio"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.socialLink}
-          aria-label="Eiki Studio"
-        >
-          WEB
-        </a>
-        <a
+<a
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -76,7 +67,7 @@ export default function Navigation() {
           GH
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/eir%C3%ADkur-atli-k-234952264/"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
