@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styles from './Sidebar.module.css';
 
-const skills = ['React / React Native', 'Next.js', 'TypeScript / JavaScript', 'HTML / CSS', 'Tailwind CSS', 'Node.js', 'Figma', 'Illustrator', 'GitHub'];
+const skills = ['React / React Native', 'Next.js', 'TypeScript / JavaScript', 'HTML / CSS', 'Tailwind CSS', 'Node.js', 'Supabase', 'MongoDB', 'Google Auth', 'Figma', 'Illustrator', 'Jitter', 'GitHub'];
 
 export default function Sidebar() {
   return (
@@ -33,7 +33,7 @@ export default function Sidebar() {
       {/* Availability badge */}
       <div className={styles.badge}>
         <span className={styles.dot} aria-hidden="true" />
-        Available for work
+        Available for hire / work
       </div>
 
       {/* Skills */}

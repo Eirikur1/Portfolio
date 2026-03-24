@@ -275,7 +275,8 @@
   }
 
   .heroHeading {
-    letter-spacing: -2px;
+    font-size: clamp(40px, 12vw, 72px);
+    letter-spacing: -1px;
   }
 
   .sectionHeader {

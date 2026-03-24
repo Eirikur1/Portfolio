@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { RiGithubLine } from 'react-icons/ri';
+import { FaLinkedinIn } from 'react-icons/fa6';
 import styles from './Navigation.module.css';
 
 const navLinks = [
@@ -31,31 +33,8 @@ export default function Navigation() {
         ))}
       </nav>
 
-      {/* Bottom-right CTA */}
-      <a
-        href="mailto:Eirikurak@gmail.com"
-        className={styles.cta}
-        aria-label="Send email"
-      >
-        Let&apos;s talk
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M2 12L12 2M12 2H5M12 2V9"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </a>
 
-      {/* Bottom-left social links */}
+{/* Bottom-left social links */}
       <div className={styles.socials}>
 <a
           href="https://github.com"
@@ -64,7 +43,7 @@ export default function Navigation() {
           className={styles.socialLink}
           aria-label="GitHub"
         >
-          GH
+          <RiGithubLine size={18} />
         </a>
         <a
           href="https://www.linkedin.com/in/eir%C3%ADkur-atli-k-234952264/"
@@ -73,7 +52,7 @@ export default function Navigation() {
           className={styles.socialLink}
           aria-label="LinkedIn"
         >
-          LI
+          <FaLinkedinIn size={16} />
         </a>
       </div>
     </>

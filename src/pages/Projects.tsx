@@ -18,9 +18,12 @@ const categories: ('All' | ProjectCategory)[] = [
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
 
+  const matchesFilter = (p: typeof projects[0], filter: string) =>
+    p.category === filter || p.tags.includes(filter);
+
   const filtered = activeFilter === 'All'
     ? projects
-    : projects.filter((p) => p.category === activeFilter);
+    : projects.filter((p) => matchesFilter(p, activeFilter));
 
   return (
     <main className={styles.main}>
@@ -69,7 +72,7 @@ export default function Projects() {
                   {cat}
                   {cat !== 'All' && (
                     <span className={styles.filterCount}>
-                      {projects.filter((p) => p.category === cat).length}
+                      {projects.filter((p) => matchesFilter(p, cat)).length}
                     </span>
                   )}
                 </button>

@@ -65,7 +65,7 @@ export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000, col
   return (
     <span
       aria-live="polite"
-      style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}
+      style={{ position: 'relative', display: 'inline-block', whiteSpace: 'normal' }}
     >
       {/* Underlay: typed text in normal colour, fades out */}
       <AnimatePresence mode="wait">

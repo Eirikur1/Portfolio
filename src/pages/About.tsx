@@ -85,10 +85,7 @@ export default function About() {
               Eirikurak@gmail.com
             </a>
             <span className={styles.contactDetail}>+354 823 0350</span>
-            <a href="https://eiki.studio" target="_blank" rel="noopener noreferrer" className={styles.contactDetail}>
-              eiki.studio
-            </a>
-            <span className={styles.contactDetail}>108 Reykjavík</span>
+<span className={styles.contactDetail}>108 Reykjavík</span>
           </div>
         </motion.section>
 
