@@ -141,8 +141,14 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
     return <div className="map-loading">Loading globe…</div>
   }
 
+  const getCode = (feat: GeoJsonFeature): string => {
+    const iso = feat.properties.ISO_A2
+    if (iso && iso !== '-99') return iso
+    return feat.properties.ISO_A2_EH || feat.properties.ADM0_A3?.slice(0, 2) || ''
+  }
+
   const getFill = (feat: GeoJsonFeature): string => {
-    const code = feat.properties.ISO_A2 || feat.properties.ADMIN
+    const code = getCode(feat)
     if (!code) return 'var(--country-default, #2d3748)'
     if (targetCode && code === targetCode) return 'hsl(120, 70%, 45%)'
     const dist = distances[code]
@@ -188,7 +194,7 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
           {/* Countries */}
           <g>
             {geojson.features.map((feat, i) => {
-              const code = feat.properties.ISO_A2
+              const code = getCode(feat)
               if (!code) return null
               const pathD = pathFromFeature(feat, centerLng, centerLat)
               if (!pathD) return null

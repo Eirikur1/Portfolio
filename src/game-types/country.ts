@@ -33,6 +33,8 @@ export interface GeoJsonFeature {
   type: 'Feature'
   properties: {
     ISO_A2?: string
+    ISO_A2_EH?: string
+    ADM0_A3?: string
     ADMIN?: string
     [key: string]: unknown
   }
