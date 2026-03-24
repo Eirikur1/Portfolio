@@ -69,7 +69,7 @@ export function Game({ onBack }: GameProps) {
               ? won
                 ? `Solved in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}`
                 : 'Better luck tomorrow!'
-              : `${remaining} ${remaining === 1 ? 'guess' : 'guesses'} remaining`}
+              : `${remaining} ${remaining === 1 ? 'guess' : 'guesses'} remaining · resets daily`}
           </p>
         </div>
 
@@ -103,13 +103,12 @@ export function Game({ onBack }: GameProps) {
 
           {gameOver && (
             <div className={`game-over ${won ? 'game-over-won' : 'game-over-lost'}`} role="status">
-              <span className="game-over-emoji">{won ? '🎉' : '🌍'}</span>
               <div>
                 <strong>{target.name}</strong>
                 <p>
                   {won
-                    ? `Got it in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}!`
-                    : 'Try again tomorrow!'}
+                    ? `${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'} — new country tomorrow`
+                    : 'New country tomorrow'}
                 </p>
               </div>
             </div>

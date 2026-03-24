@@ -449,12 +449,6 @@
   border-color: var(--accent-border);
 }
 
-.game-over-emoji {
-  font-size: 1.5rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
 .game-over strong {
   display: block;
   color: var(--text-h);

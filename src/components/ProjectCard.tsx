@@ -40,9 +40,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         {project.wip && (
           <span className={styles.wipBadge}>In progress</span>
         )}
-        <div className={styles.hoverOverlay} aria-hidden="true">
-          <span className={styles.viewLabel}>View project →</span>
-        </div>
       </div>
 
       {/* Content */}

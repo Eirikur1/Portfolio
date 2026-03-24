@@ -15,7 +15,11 @@ const categories: ('All' | ProjectCategory)[] = [
   'Motion',
 ];
 
-export default function Projects() {
+interface ProjectsProps {
+  onNameTripleClick?: () => void;
+}
+
+export default function Projects({ onNameTripleClick }: ProjectsProps) {
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
 
   const matchesFilter = (p: typeof projects[0], filter: string) =>
@@ -30,7 +34,7 @@ export default function Projects() {
       <div className="container">
         <div className={styles.layout}>
           {/* ===== Sticky sidebar ===== */}
-          <Sidebar />
+          <Sidebar onNameTripleClick={onNameTripleClick} />
 
           {/* ===== Main content ===== */}
           <div className={styles.content}>

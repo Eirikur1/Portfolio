@@ -29,10 +29,6 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            <motion.p className={styles.heroEyebrow} variants={itemVariants}>
-              Design &amp; Development
-            </motion.p>
-
             <motion.h1 className={styles.heroHeading} variants={itemVariants}>
               Crafting
               <br />
@@ -57,16 +53,10 @@ export default function Home() {
               <Link to="/projects" className={styles.ctaPrimary}>
                 View work
               </Link>
-              <Link to="/about" className={styles.ctaSecondary}>
-                About me
-              </Link>
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Decorative blobs */}
-        <div className={styles.blob1} aria-hidden="true" />
-        <div className={styles.blob2} aria-hidden="true" />
       </section>
 
       {/* ===== Featured projects ===== */}
@@ -92,7 +82,7 @@ export default function Home() {
         <div className={styles.marqueeTrack}>
           {[...Array(6)].map((_, i) => (
             <span key={i} className={styles.marqueeContent}>
-              Design<span>◆</span>Development<span>◆</span>Motion<span>◆</span>Branding<span>◆</span>Systems<span>◆</span>
+              Design<span>◆</span>Development<span>◆</span>Branding<span>◆</span>Motion<span>◆</span>React Native<span>◆</span>Mobile<span>◆</span>Web<span>◆</span>
             </span>
           ))}
         </div>
@@ -108,22 +98,12 @@ export default function Home() {
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className={styles.contactEyebrow}>Ready to build something?</p>
             <h2 className={styles.contactHeading}>
-              Let&apos;s make it{' '}
-              <span className={styles.contactAccent}>happen</span>.
+              Open to opportunities.
             </h2>
+            <p className={styles.contactSub}>Full-time, freelance, or collaboration.</p>
             <a href="mailto:Eirikurak@gmail.com" className={styles.contactCta}>
-              Start a conversation
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path
-                  d="M3 15L15 3M15 3H7M15 3V11"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              Eirikurak@gmail.com →
             </a>
           </motion.div>
         </div>

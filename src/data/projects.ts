@@ -22,7 +22,7 @@ export const projects: Project[] = [
     category: 'Development',
     year: '2026',
     description: 'A React Native app for finding water refill stations nearby. Built in collaboration with a Danish student while studying in Spain. My first React Native project and a great learning experience.',
-    tags: ['React Native', 'Mobile', 'Design'],
+    tags: ['React Native', 'Mobile', 'Motion', 'Design'],
     accent: '#5182bc',
     video: '/screenrecording.mp4',
     link: 'https://www.figma.com/board/ZqjHmh8rNDLgYxnMSMZCTb/WaterFinder?node-id=1-5&t=gs0iNxG3TM8LnOKk-1',
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     year: '2024',
     description:
       'Full brand identity for Pizzaport, covering logo, visual language, posters, and merch. Built to feel bold, local, and memorable.',
-    tags: ['Design', 'Branding', 'Identity', 'Posters', 'Merch', 'Illustrator'],
+    tags: ['Design', 'Motion', 'Branding', 'Identity', 'Posters', 'Merch', 'Illustrator'],
     accent: '#e6bf98',
     image: '/d35dabf2-1.png',
     link: 'https://www.figma.com/board/tUMWmYxgWVQC2bMbREdlbO/Untitled?node-id=1-2&t=sru4syRu5y6gakfK-1',

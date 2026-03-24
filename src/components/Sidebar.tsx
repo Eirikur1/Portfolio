@@ -1,9 +1,27 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Sidebar.module.css';
 
 const skills = ['React / React Native', 'Next.js', 'TypeScript / JavaScript', 'HTML / CSS', 'Tailwind CSS', 'Node.js', 'Supabase', 'MongoDB', 'Google Auth', 'Figma', 'Illustrator', 'Jitter', 'GitHub'];
 
-export default function Sidebar() {
+interface SidebarProps {
+  onNameTripleClick?: () => void;
+}
+
+export default function Sidebar({ onNameTripleClick }: SidebarProps) {
+  const clickCount = useRef(0);
+  const clickTimer = useRef<number | null>(null);
+
+  const handleNameClick = () => {
+    clickCount.current += 1;
+    if (clickTimer.current) clearTimeout(clickTimer.current);
+    clickTimer.current = window.setTimeout(() => { clickCount.current = 0; }, 600);
+    if (clickCount.current >= 3) {
+      clickCount.current = 0;
+      onNameTripleClick?.();
+    }
+  };
+
   return (
     <motion.aside
       className={styles.sidebar}
@@ -18,7 +36,9 @@ export default function Sidebar() {
 
       {/* Identity */}
       <div className={styles.identity}>
-        <h2 className={styles.name}>Eiríkur Atli Karlsson</h2>
+        <h2 className={styles.name} onClick={handleNameClick} style={{ cursor: 'default' }}>
+          Eiríkur Atli Karlsson
+        </h2>
         <p className={styles.role}>
           Developer <span className={styles.amp}>&amp;</span> Designer
         </p>
