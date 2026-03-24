@@ -36,7 +36,7 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
   const [centerLat, setCenterLat] = useState(0)
   const [zoom, setZoom] = useState(1)
   const [isDragging, setIsDragging] = useState(false)
-  const dragStart = useRef({ x: 0, lng: 0 })
+  const dragStart = useRef({ x: 0, y: 0, lng: 0, lat: 0 })
   const isDraggingRef = useRef(false)
 
   useEffect(() => {
@@ -77,13 +77,15 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
     e.currentTarget.setPointerCapture(e.pointerId)
     isDraggingRef.current = true
     setIsDragging(true)
-    dragStart.current = { x: e.clientX, lng: centerLng }
-  }, [centerLng])
+    dragStart.current = { x: e.clientX, y: e.clientY, lng: centerLng, lat: centerLat }
+  }, [centerLng, centerLat])
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!isDraggingRef.current) return
     const dx = e.clientX - dragStart.current.x
+    const dy = e.clientY - dragStart.current.y
     setCenterLng(dragStart.current.lng - dx * DRAG_SENSITIVITY)
+    setCenterLat(Math.max(-85, Math.min(85, dragStart.current.lat + dy * DRAG_SENSITIVITY)))
   }, [])
 
   const handlePointerUp = useCallback((e: React.PointerEvent) => {
