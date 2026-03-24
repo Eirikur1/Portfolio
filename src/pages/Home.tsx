@@ -37,13 +37,14 @@ export default function Home() {
               Crafting
               <br />
               <Typewriter
+                className={styles.heroTypewriter}
                 words={[
                   'with intention',
                   'with purpose',
                   'for the web',
-                  'modern interfaces',
-                  'better experiences',
-                  'something new',
+                  'interfaces',
+                  'experiences',
+                  'the future',
                 ]}
                 color="var(--color-green)"
               />

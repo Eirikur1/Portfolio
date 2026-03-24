@@ -6,6 +6,7 @@ interface TypewriterProps {
   typingSpeed?: number;
   holdMs?: number;
   color?: string;
+  className?: string;
 }
 
 const SWEEP_EASE: [number, number, number, number] = [0.2, 0, 0.3, 0.3];
@@ -24,7 +25,7 @@ const gradient = `
 
 type Phase = 'typing' | 'holding' | 'fading';
 
-export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000, color = 'var(--color-text)' }: TypewriterProps) {
+export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000, color = 'var(--color-text)', className }: TypewriterProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [phase, setPhase] = useState<Phase>('typing');
@@ -65,7 +66,8 @@ export default function Typewriter({ words, typingSpeed = 80, holdMs = 2000, col
   return (
     <span
       aria-live="polite"
-      style={{ position: 'relative', display: 'inline-block', whiteSpace: 'normal' }}
+      className={className}
+      style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}
     >
       {/* Underlay: typed text in normal colour, fades out */}
       <AnimatePresence mode="wait">
