@@ -7,7 +7,7 @@ import { haversineDistance } from '../game-lib/haversine'
 import { getDirection } from '../game-lib/direction'
 import type { Country, CountryMap, Guess } from '../game-types/country'
 
-const MAX_GUESSES = 6
+const MAX_GUESSES = 6 // used only for pip display
 
 function getTodayCountry(countries: Country[]): Country {
   const today = new Date().toISOString().slice(0, 10)
@@ -40,7 +40,7 @@ export function Game({ onBack }: GameProps) {
     if (distanceKm === 0) setWon(true)
   }
 
-  const gameOver = won || guesses.length >= MAX_GUESSES
+  const gameOver = won
   const countryListArr = countries ? countryList(countries) : []
 
   const distances: Record<string, number> = {}
@@ -55,8 +55,6 @@ export function Game({ onBack }: GameProps) {
     )
   }
 
-  const remaining = MAX_GUESSES - guesses.length
-
   return (
     <div className="game">
       <header className="game-header">
@@ -65,27 +63,10 @@ export function Game({ onBack }: GameProps) {
             <span className="game-title-text">Country Guesser</span>
           </h1>
           <p className="game-subtitle">
-            {gameOver
-              ? won
-                ? `Solved in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}`
-                : 'Better luck tomorrow!'
-              : `${remaining} ${remaining === 1 ? 'guess' : 'guesses'} remaining · resets daily`}
+            {won
+              ? `Solved in ${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}`
+              : `${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'} · resets daily`}
           </p>
-        </div>
-
-        <div className="guess-pips" aria-label="Guess progress">
-          {Array.from({ length: MAX_GUESSES }).map((_, i) => (
-            <span
-              key={i}
-              className={`pip ${
-                i < guesses.length
-                  ? won && i === guesses.length - 1
-                    ? 'pip-win'
-                    : 'pip-used'
-                  : ''
-              }`}
-            />
-          ))}
         </div>
       </header>
 
