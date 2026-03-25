@@ -92,6 +92,17 @@ export const projects: Project[] = [
     link: 'https://krunk-eight.vercel.app/login',
     featured: false,
   },
+  {
+    id: '07',
+    title: 'FindIceland',
+    category: 'Development',
+    year: '2026',
+    description: 'An all-in-one stop Iceland app for tourists — local guides, things to do, places to eat, and everything in between.',
+    tags: ['React Native', 'Mobile', 'Design'],
+    accent: '#5182bc',
+    featured: false,
+    wip: true,
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
