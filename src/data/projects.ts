@@ -94,6 +94,18 @@ export const projects: Project[] = [
   },
   {
     id: '07',
+    title: 'Dagrun',
+    category: 'Development',
+    year: '2026',
+    description: 'A daily mini-games site built for Icelandic players. New games every day, built solo from design to deployment.',
+    tags: ['Design', 'Development', 'React', 'TypeScript', 'Supabase'],
+    accent: '#dc3c24',
+    image: '/dagrun.png',
+    link: 'https://landagisk.vercel.app/is',
+    featured: false,
+  },
+  {
+    id: '08',
     title: 'FindIceland',
     category: 'Development',
     year: '2026',
