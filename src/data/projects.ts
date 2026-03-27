@@ -103,6 +103,7 @@ export const projects: Project[] = [
     image: '/dagrun.png',
     link: 'https://landagisk.vercel.app/is',
     featured: false,
+    wip: true,
   },
   {
     id: '08',
