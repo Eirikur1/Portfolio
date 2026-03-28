@@ -16,11 +16,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     <motion.article
       ref={ref}
       className={styles.card}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.6,
-        delay: index * 0.08,
+        duration: 0.5,
+        delay: Math.min(index * 0.06, 0.3),
         ease: [0.16, 1, 0.3, 1],
       }}
       style={{ '--accent': project.accent } as React.CSSProperties}
