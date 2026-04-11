@@ -1,4 +1,48 @@
 /* ===== Design Tokens ===== */
+
+/* PREVIOUS COLOR SCHEMES — restore by copying values back into :root
+
+  SCHEME: Original dark blue
+  --color-bg: #193564;
+  --color-text: #f6e8dd;
+  --color-green: #dc3c24;
+  --color-orange: #e6bf98;
+  --color-muted: #8aaad4;
+  --color-subtle: #5182bc;
+  --color-surface: #1e3d70;
+  --color-border: rgba(246, 232, 221, 0.1);
+
+  SCHEME: Korean stationery (sky blue + red + navy)
+  --color-bg: #29A8E0;
+  --color-text: #FFFFFF;
+  --color-green: #E8281E;
+  --color-orange: #E8281E;
+  --color-muted: rgba(255, 255, 255, 0.65);
+  --color-subtle: rgba(255, 255, 255, 0.4);
+  --color-surface: #1A1F8C;
+  --color-border: rgba(255, 255, 255, 0.15);
+
+  SCHEME: Brand blue #004FC6
+  --color-bg: #004FC6;
+  --color-text: #f6e8dd;
+  --color-green: #dc3c24;
+  --color-orange: #e6bf98;
+  --color-muted: oklch(0.728 0.134 296.8);
+  --color-subtle: oklch(0.659 0.172 296.67);
+  --color-surface: oklch(0.465 0.212 295.98);
+  --color-border: rgba(246, 232, 221, 0.1);
+
+  SCHEME: Vivid blue + gold
+  --color-bg: #292FC1;
+  --color-text: #F7F9F6;
+  --color-green: #F4BE53;
+  --color-orange: #F4BE53;
+  --color-muted: #6b72d4;
+  --color-subtle: #4a50c4;
+  --color-surface: #3238cc;
+  --color-border: rgba(247, 249, 246, 0.1);
+*/
+
 :root {
   --color-bg: #193564;
   --color-text: #f6e8dd;

@@ -31,7 +31,7 @@ export default function Sidebar({ onNameTripleClick }: SidebarProps) {
     >
       {/* Avatar */}
       <div className={styles.avatar}>
-        <img src="/IMG_7741.jpg" alt="Eiríkur Atli Karlsson" className={styles.avatarImg} />
+        <img src="/IMG_3781%202.JPG" alt="Eiríkur Atli Karlsson" className={styles.avatarImg} />
       </div>
 
       {/* Identity */}

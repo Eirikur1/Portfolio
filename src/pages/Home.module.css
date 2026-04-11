@@ -121,7 +121,7 @@
 .marqueeTrack {
   display: flex;
   width: max-content;
-  animation: marquee 24s linear infinite;
+  animation: marquee 48s linear infinite;
 }
 
 .marqueeContent {

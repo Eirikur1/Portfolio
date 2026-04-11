@@ -84,8 +84,7 @@ export default function About() {
             <a href="mailto:Eirikurak@gmail.com" className={styles.contactDetail}>
               Eirikurak@gmail.com
             </a>
-            <span className={styles.contactDetail}>+354 823 0350</span>
-<span className={styles.contactDetail}>108 Reykjavík</span>
+            <span className={styles.contactDetail}>108 Reykjavík</span>
           </div>
         </motion.section>
 
