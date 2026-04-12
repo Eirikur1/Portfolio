@@ -24,7 +24,7 @@ export const projects: Project[] = [
     description: 'A daily mini-games site built for Icelandic players. New games every day, built solo from design to deployment.',
     tags: ['Design', 'Development', 'React', 'TypeScript', 'Supabase'],
     accent: '#dc3c24',
-    image: '/DagrunImage.png',
+    video: '/UpDatedAnimation.mp4',
     link: 'https://landagisk.vercel.app/is',
     featured: false,
     wip: true,
