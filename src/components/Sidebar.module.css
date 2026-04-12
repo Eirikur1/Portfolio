@@ -3,11 +3,17 @@
   flex-shrink: 0;
   position: sticky;
   top: 120px;
-  height: fit-content;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  scrollbar-width: none;
   display: flex;
   flex-direction: column;
   gap: 28px;
   padding: 0;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 /* ===== Avatar ===== */
@@ -113,9 +119,9 @@
 
 .skillsList {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
 }
 
 .skillItem {
