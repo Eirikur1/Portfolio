@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, type Variants } from 'framer-motion';
+import Lenis from 'lenis';
 import Navigation from './components/Navigation';
 import HiredEasterEgg from './components/HiredEasterEgg';
 import GameModal from './components/GameModal';
@@ -19,6 +20,19 @@ const pageVariants: Variants = {
 function AppInner() {
   const location = useLocation();
   const [gameOpen, setGameOpen] = useState(false);
+
+  useEffect(() => {
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const id = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(id);
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <>
