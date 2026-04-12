@@ -65,11 +65,15 @@
   color: var(--color-text);
   font-weight: 600;
   font-size: 15px;
-  transition: opacity 0.15s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ctaPrimary:hover {
-  opacity: 0.85;
+  background: var(--color-text);
+  color: var(--color-bg);
+  transform: translateY(-2px);
 }
 
 /* ===== Featured projects ===== */
