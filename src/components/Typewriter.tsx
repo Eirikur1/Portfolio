@@ -17,10 +17,10 @@ const charVariants = {
     transition: {
       delay: i * 0.06,
       duration: 0.35,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   }),
-  exit: { opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } },
+  exit: { opacity: 0, transition: { duration: 0.2, ease: [0.4, 0, 1, 1] as const } },
 };
 
 const underlineVariants = {
@@ -30,7 +30,7 @@ const underlineVariants = {
   hover: {
     scaleX: 1,
     transformOrigin: 'left center',
-    transition: { duration: 0.3, ease: 'easeInOut' },
+    transition: { duration: 0.3, ease: [0.42, 0, 0.58, 1] as const },
   },
 };
 
