@@ -22,7 +22,7 @@ export const projects: Project[] = [
     category: 'Development',
     year: '2026',
     description: 'A daily mini-games site with new games every day, built solo from design to deployment.',
-    tags: ['Design', 'Development', 'React', 'TypeScript', 'Supabase'],
+    tags: ['Design', 'Development', 'Motion', 'React', 'TypeScript', 'Supabase'],
     accent: '#00522f',
     image: '/Apabiz.png',
     link: 'https://landagisk.vercel.app/is',
