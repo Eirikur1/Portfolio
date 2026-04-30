@@ -12,12 +12,6 @@ const navLinks = [
 export default function Navigation() {
   return (
     <>
-      {/* Top-left wordmark */}
-      <NavLink to="/" className={styles.wordmark} aria-label="Home">
-        Eiki<span className={styles.dot}>.</span>
-      </NavLink>
-
-      {/* Top-right page links */}
       <nav className={styles.nav} aria-label="Main navigation">
         {navLinks.map(({ to, label }) => (
           <NavLink
@@ -33,17 +27,15 @@ export default function Navigation() {
         ))}
       </nav>
 
-
-{/* Bottom-left social links */}
       <div className={styles.socials}>
-<a
-          href="https://github.com"
+        <a
+          href="https://github.com/Eirikur1"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.socialLink}
           aria-label="GitHub"
         >
-          <RiGithubLine size={18} />
+          <RiGithubLine size={17} />
         </a>
         <a
           href="https://www.linkedin.com/in/eir%C3%ADkur-atli-k-234952264/"
@@ -52,7 +44,7 @@ export default function Navigation() {
           className={styles.socialLink}
           aria-label="LinkedIn"
         >
-          <FaLinkedinIn size={16} />
+          <FaLinkedinIn size={15} />
         </a>
       </div>
     </>

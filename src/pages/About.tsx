@@ -50,6 +50,8 @@ const education = [
   },
 ];
 
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
 export default function About() {
   return (
     <main className={styles.main}>
@@ -58,46 +60,45 @@ export default function About() {
         {/* ===== Hero ===== */}
         <motion.section
           className={styles.hero}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.7, ease }}
         >
-          <p className={styles.eyebrow}>About</p>
-          <h1 className={styles.heading}>
-            A bit{' '}
-            <span className={styles.headingAccent}>about</span>
-            <br />
-            me
-            <span className={styles.headingPeriod}>.</span>
-          </h1>
-          <p className={styles.bio}>
-            I&apos;m Eiríkur, an ambitious, hardworking, and creative developer
-            and designer based in Reykjavík. I have a strong interest in web
-            development, technology, and building new solutions.
-          </p>
-          <p className={styles.bio}>
-            I communicate easily, work well both independently and in a team,
-            and always push myself to take on new challenges. Currently studying
-            web development at Tækniskólinn.
-          </p>
-          <div className={styles.contactInfo}>
-            <a href="mailto:Eirikurak@gmail.com" className={styles.contactDetail}>
-              Eirikurak@gmail.com
-            </a>
-            <span className={styles.contactDetail}>108 Reykjavík</span>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>About / Reykjavík</p>
+            <h1 className={styles.heading}>
+              Curious hands, practical mind, visual instinct.
+            </h1>
+            <p className={styles.bio}>
+              I&apos;m Eiríkur, an ambitious and creative developer/designer based
+              in Reykjavík. I like building web products that feel useful,
+              memorable, and cared for.
+            </p>
+            <p className={styles.bio}>
+              My background mixes entrepreneurship, construction-level precision,
+              and web development studies at Tækniskólinn, which gives my work a
+              grounded, get-it-shipped rhythm.
+            </p>
+            <div className={styles.contactInfo}>
+              <a href="mailto:Eirikurak@gmail.com" className={styles.contactDetail}>
+                Eirikurak@gmail.com
+              </a>
+              <span className={styles.contactDetail}>108 Reykjavík</span>
+            </div>
           </div>
+          <figure className={styles.heroPortrait}>
+            <img src="/IMG_3781%202.JPG" alt="" />
+            <figcaption>available for web, app, and identity work</figcaption>
+          </figure>
         </motion.section>
-
-        {/* ===== Divider ===== */}
-        <div className={styles.divider} />
 
         {/* ===== Experience ===== */}
         <motion.section
           className={styles.section}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.7, ease }}
         >
           <h2 className={styles.sectionTitle}>Experience</h2>
           <ol className={styles.timeline}>
@@ -105,10 +106,10 @@ export default function About() {
               <motion.li
                 key={i}
                 className={styles.timelineItem}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                transition={{ delay: i * 0.08, duration: 0.5, ease }}
               >
                 <div className={styles.timelineLeft}>
                   <span className={styles.period}>{item.period}</span>
@@ -128,16 +129,13 @@ export default function About() {
           </ol>
         </motion.section>
 
-        {/* ===== Divider ===== */}
-        <div className={styles.divider} />
-
         {/* ===== Education ===== */}
         <motion.section
           className={styles.section}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.7, ease }}
         >
           <h2 className={styles.sectionTitle}>Education</h2>
           <ol className={styles.timeline}>
@@ -145,10 +143,10 @@ export default function About() {
               <motion.li
                 key={i}
                 className={styles.timelineItem}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                transition={{ delay: i * 0.08, duration: 0.5, ease }}
               >
                 <div className={styles.timelineLeft}>
                   <span className={styles.period}>{item.period}</span>
@@ -164,16 +162,13 @@ export default function About() {
           </ol>
         </motion.section>
 
-        {/* ===== Divider ===== */}
-        <div className={styles.divider} />
-
         {/* ===== Skills ===== */}
         <motion.section
           className={styles.section}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.7, ease }}
         >
           <h2 className={styles.sectionTitle}>Skills</h2>
           <div className={styles.skillsGrid}>
@@ -185,10 +180,10 @@ export default function About() {
               <motion.span
                 key={skill}
                 className={styles.skillPill}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.04, duration: 0.4 }}
+                transition={{ delay: i * 0.03, duration: 0.35, ease }}
               >
                 {skill}
               </motion.span>
@@ -199,17 +194,17 @@ export default function About() {
         {/* ===== Contact ===== */}
         <motion.section
           className={styles.contact}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, ease }}
         >
           <h2 className={styles.contactHeading}>
             Want to work{' '}
             <span className={styles.contactAccent}>together</span>?
           </h2>
           <a href="mailto:Eirikurak@gmail.com" className={styles.contactCta}>
-            Eirikurak@gmail.com
+            Eirikurak@gmail.com →
           </a>
         </motion.section>
 

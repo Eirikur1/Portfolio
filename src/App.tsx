@@ -49,7 +49,7 @@ function AppInner() {
         >
           <Routes location={location}>
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects onNameTripleClick={() => setGameOpen(true)} />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </motion.div>

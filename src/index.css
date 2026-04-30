@@ -1,75 +1,100 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("./fonts/Satoshi-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./fonts/Satoshi-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./fonts/Satoshi-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("./fonts/Satoshi-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Chillax";
+  src: url("./fonts/Chillax-Semibold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Righteous";
+  src: url("./fonts/Righteous-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===== Design Tokens ===== */
-
-/* PREVIOUS COLOR SCHEMES — restore by copying values back into :root
-
-  SCHEME: Original dark blue
-  --color-bg: #193564;
-  --color-text: #f6e8dd;
-  --color-green: #dc3c24;
-  --color-orange: #e6bf98;
-  --color-muted: #8aaad4;
-  --color-subtle: #5182bc;
-  --color-surface: #1e3d70;
-  --color-border: rgba(246, 232, 221, 0.1);
-
-  SCHEME: Korean stationery (sky blue + red + navy)
-  --color-bg: #29A8E0;
-  --color-text: #FFFFFF;
-  --color-green: #E8281E;
-  --color-orange: #E8281E;
-  --color-muted: rgba(255, 255, 255, 0.65);
-  --color-subtle: rgba(255, 255, 255, 0.4);
-  --color-surface: #1A1F8C;
-  --color-border: rgba(255, 255, 255, 0.15);
-
-  SCHEME: Brand blue #004FC6
-  --color-bg: #004FC6;
-  --color-text: #f6e8dd;
-  --color-green: #dc3c24;
-  --color-orange: #e6bf98;
-  --color-muted: oklch(0.728 0.134 296.8);
-  --color-subtle: oklch(0.659 0.172 296.67);
-  --color-surface: oklch(0.465 0.212 295.98);
-  --color-border: rgba(246, 232, 221, 0.1);
-
-  SCHEME: Vivid blue + gold
-  --color-bg: #292FC1;
-  --color-text: #F7F9F6;
-  --color-green: #F4BE53;
-  --color-orange: #F4BE53;
-  --color-muted: #6b72d4;
-  --color-subtle: #4a50c4;
-  --color-surface: #3238cc;
-  --color-border: rgba(247, 249, 246, 0.1);
-*/
-
 :root {
-  --color-bg: #193564;
-  --color-text: #f6e8dd;
-  --color-green: #dc3c24;
-  --color-orange: #e6bf98;
-  --color-muted: #8aaad4;
-  --color-subtle: #5182bc;
-  --color-surface: #1e3d70;
-  --color-border: rgba(246, 232, 221, 0.1);
+  --color-bg: #f5ead8;
+  --color-text: #d60724;
+  --color-ink: #4c2415;
+  --color-muted: rgba(76, 36, 21, 0.68);
+  --color-subtle: rgba(214, 7, 36, 0.24);
+  --color-surface: #fff4de;
+  --color-surface-strong: #ffb72f;
+  --color-ink-inverse: #ffffff;
+  --color-border: #d60724;
+  --color-border-light: rgba(214, 7, 36, 0.28);
+  --color-accent: #ffb72f;
+  --color-accent-soft: #ffe1a1;
+  --color-blue: #0155a8;
+  --color-green: #00864f;
+  --color-red-deep: #a60b18;
+  --color-yellow-hot: #ffb72f;
+  --color-cream: #f5ead8;
 
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* legacy aliases used in easter egg / game */
+  --color-orange: #e94f2f;
+  --color-red: #d60724;
+  --color-yellow: #ffb72f;
+  --color-emerald: #006b49;
+  --color-crimson: #d60724;
+  --color-azure: #2337ff;
 
-  --max-width: 1140px;
-  --sidebar-width: 344px;
-  --gap-xl: 100px;
-  --gap-lg: 60px;
+  --font-display: "Righteous", "Chillax", "Satoshi", system-ui, sans-serif;
+  --font-heading: "Chillax", "Satoshi", system-ui, sans-serif;
+  --font-body: "Satoshi", var(--font-display);
+
+  --max-width: 1360px;
+  --sidebar-width: 300px;
+  --gap-xl: 120px;
+  --gap-lg: 80px;
   --gap-md: 40px;
   --gap-sm: 20px;
+  --frame: clamp(18px, 3.2vw, 56px);
 
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
-  --transition-fast: 0.2s ease;
-  --transition-med: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.18s ease;
+  --transition-med: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+
+  --ease-spring: cubic-bezier(0.03, 0.71, 0.31, 1.01);
 }
 
 /* ===== Reset ===== */
@@ -86,11 +111,13 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 183, 47, 0.44), transparent 24rem),
+    linear-gradient(180deg, var(--color-yellow-hot) 0 15rem, var(--color-bg) 15rem 100%);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -119,12 +146,18 @@ button {
   width: 100%;
   max-width: var(--max-width);
   margin-inline: auto;
-  padding-inline: var(--gap-md);
+  padding-inline: var(--frame);
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  width: 100%;
 }
 
 /* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -132,16 +165,12 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-subtle);
+  background: var(--color-red);
   border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted);
 }
 
 /* ===== Selection ===== */
 ::selection {
-  background: var(--color-green);
-  color: var(--color-text);
+  background: var(--color-red);
+  color: var(--color-yellow-hot);
 }

@@ -10,6 +10,8 @@
   flex-direction: column;
   gap: 28px;
   padding: 0;
+  border-right: 1px solid var(--color-border-light);
+  padding-right: 40px;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -18,11 +20,10 @@
 
 /* ===== Avatar ===== */
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid var(--color-border);
   background: var(--color-surface);
   flex-shrink: 0;
 }
@@ -31,7 +32,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Below top so the face sits nearer the middle of the circle */
   object-position: center 50%;
   display: block;
 }
@@ -45,28 +45,31 @@
 
 .name {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.3px;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
   color: var(--color-text);
+  text-transform: lowercase;
 }
 
 .role {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-muted);
+  font-weight: 400;
 }
 
 .amp {
-  color: var(--color-orange);
+  color: var(--color-muted);
 }
 
 /* ===== Bio ===== */
 .bio {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
   color: var(--color-muted);
-  border-top: 1px solid var(--color-border);
-  padding-top: 24px;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 20px;
+  font-weight: 400;
 }
 
 /* ===== Availability badge ===== */
@@ -75,14 +78,13 @@
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(74, 222, 128, 0.4);
-  background: rgba(74, 222, 128, 0.06);
-  font-size: 11px;
-  font-weight: 600;
-  color: #4ade80;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  border-radius: 100px;
+  border: 1px solid var(--color-border-light);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-muted);
+  letter-spacing: 0;
   width: fit-content;
 }
 
@@ -90,9 +92,10 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #4ade80;
+  background: var(--color-text);
   flex-shrink: 0;
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2.5s ease-in-out infinite;
+  display: block;
 }
 
 @keyframes pulse {
@@ -105,14 +108,14 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border-top: 1px solid var(--color-border);
-  padding-top: 24px;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 20px;
 }
 
 .skillsLabel {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-subtle);
 }
@@ -125,26 +128,16 @@
 }
 
 .skillItem {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--color-muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skillItem::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--color-orange);
-  flex-shrink: 0;
+  font-weight: 400;
 }
 
 /* ===== Year ===== */
 .year {
   font-size: 12px;
   color: var(--color-subtle);
-  border-top: 1px solid var(--color-border);
-  padding-top: 20px;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 16px;
+  font-weight: 400;
 }

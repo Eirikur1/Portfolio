@@ -48,7 +48,10 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
 
   const centerRef = useRef({ lng: 0, lat: 0 })
   const animRef = useRef<number | null>(null)
-  centerRef.current = { lng: centerLng, lat: centerLat }
+
+  useEffect(() => {
+    centerRef.current = { lng: centerLng, lat: centerLat }
+  }, [centerLng, centerLat])
 
   useEffect(() => {
     if (!focusCountry) return
@@ -97,7 +100,10 @@ export function WorldMap({ distances = {}, targetCode, focusCountry }: WorldMapP
   const wrapperRef = useRef<HTMLDivElement>(null)
   const zoomRef = useRef(1)
   const gestureStartZoom = useRef(1)
-  zoomRef.current = zoom
+
+  useEffect(() => {
+    zoomRef.current = zoom
+  }, [zoom])
 
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault()

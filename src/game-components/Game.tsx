@@ -19,6 +19,8 @@ interface GameProps {
 }
 
 export function Game({ onBack: _onBack }: GameProps) {
+  void _onBack
+
   const [countries, setCountries] = useState<CountryMap | null>(null)
   const [target, setTarget] = useState<Country | null>(null)
   const [guesses, setGuesses] = useState<Guess[]>([])

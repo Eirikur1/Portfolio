@@ -19,7 +19,7 @@ export default function HiredEasterEgg({ onGameTrigger }: Props) {
           particleCount: 200,
           spread: 120,
           origin: { y: 0.5 },
-          colors: ['#dc3c24', '#e6bf98', '#f6e8dd', '#5182bc', '#4ade80'],
+          colors: ['#00522f', '#fff7e8', '#0092ff', '#2f2823', '#7f0c00'],
         });
         setTimeout(() => setShow(false), 4000);
         buffer.current = '';
@@ -51,20 +51,20 @@ export default function HiredEasterEgg({ onGameTrigger }: Props) {
       <div
         style={{
           background: 'var(--color-surface)',
-          border: '3px solid var(--color-green)',
-          boxShadow: '6px 6px 0px var(--color-green)',
-          borderRadius: '16px',
+          border: '5px solid var(--color-red)',
+          borderRadius: 0,
           padding: '32px 48px',
           textAlign: 'center',
           fontFamily: 'var(--font-heading)',
+          textTransform: 'uppercase',
           animation: 'popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          boxShadow: '12px 12px 0 var(--color-yellow-hot)',
         }}
       >
-        <div style={{ fontSize: '48px', marginBottom: '8px' }}>🎉</div>
-        <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--color-green)' }}>
-          You hired me!
+        <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--color-red)' }}>
+          you hired me!
         </div>
-        <div style={{ fontSize: '14px', color: 'var(--color-muted)', marginTop: '8px' }}>
+        <div style={{ fontSize: '14px', color: 'var(--color-ink)', marginTop: '8px' }}>
           Great choice.
         </div>
       </div>

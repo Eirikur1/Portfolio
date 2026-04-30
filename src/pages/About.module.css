@@ -1,88 +1,135 @@
 .main {
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 128px;
   padding-bottom: 160px;
+  background: var(--color-cream);
 }
 
 /* ===== Hero ===== */
 .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr);
+  gap: clamp(28px, 5vw, 80px);
+  align-items: end;
+  padding-bottom: clamp(52px, 7vw, 92px);
+  border-bottom: 5px solid var(--color-red);
+}
+
+.heroCopy {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 680px;
-  margin-bottom: 64px;
+  gap: 22px;
+  max-width: 920px;
 }
 
 .eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: clamp(11px, 0.8vw, 13px);
+  font-weight: 900;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-orange);
+  color: var(--color-red);
 }
 
 .heading {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(60px, 8vw, 100px);
-  letter-spacing: -3px;
-  line-height: 0.92;
-  color: var(--color-text);
-  text-transform: lowercase;
+  font-size: clamp(60px, 9.7vw, 152px);
+  letter-spacing: -0.085em;
+  line-height: 0.78;
+  color: var(--color-red);
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .headingAccent {
-  color: var(--color-green);
+  font-weight: 300;
   font-style: italic;
 }
 
 .headingPeriod {
-  color: var(--color-orange);
+  color: var(--color-muted);
 }
 
 .bio {
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--color-muted);
+  max-width: 620px;
+  font-size: clamp(17px, 1.55vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.heroPortrait {
+  position: relative;
+  border: 5px solid var(--color-red);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--color-yellow-hot);
+  box-shadow: 14px 14px 0 var(--color-red);
+  transform: rotate(1.25deg);
+}
+
+.heroPortrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.08);
+}
+
+.heroPortrait figcaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  padding: 12px 14px;
+  border: 3px solid var(--color-red);
+  border-radius: 0;
+  background: var(--color-yellow-hot);
+  color: var(--color-red);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
 }
 
 /* ===== Contact info row ===== */
 .contactInfo {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: 8px 24px;
   margin-top: 4px;
 }
 
 .contactDetail {
   font-size: 13px;
-  color: var(--color-subtle);
+  color: var(--color-red);
+  font-weight: 600;
+  border: 3px solid var(--color-red);
+  border-radius: 0;
+  padding: 8px 12px;
+  background: var(--color-yellow-hot);
+  text-transform: uppercase;
   transition: color var(--transition-fast);
 }
 
 a.contactDetail:hover {
-  color: var(--color-green);
-}
-
-/* ===== Divider ===== */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: var(--color-border);
-  margin: 64px 0;
+  color: var(--color-text);
 }
 
 /* ===== Section ===== */
 .section {
-  margin-bottom: 0;
+  padding: clamp(56px, 7vw, 92px) 0;
+  border-bottom: 5px solid var(--color-red);
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 24px;
-  letter-spacing: -0.5px;
-  color: var(--color-text);
+  font-size: clamp(24px, 3vw, 48px);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--color-red);
   margin-bottom: 40px;
 }
 
@@ -96,30 +143,37 @@ a.contactDetail:hover {
 
 .timelineItem {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 40px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--color-border);
+  grid-template-columns: minmax(160px, 0.24fr) 1fr;
+  gap: 48px;
+  padding: 34px 0;
+  border-bottom: 3px solid var(--color-border);
 }
 
 .timelineItem:first-child {
-  border-top: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-border);
+}
+
+.timelineItem:last-child {
+  border-bottom: none;
 }
 
 .timelineLeft {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  align-items: flex-start;
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
 .period {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-subtle);
-  letter-spacing: 0.02em;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-red);
   font-variant-numeric: tabular-nums;
+}
+
+.location {
+  font-size: 12px;
+  color: var(--color-ink);
 }
 
 .timelineRight {
@@ -130,28 +184,26 @@ a.contactDetail:hover {
 
 .role {
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 18px;
-  color: var(--color-text);
+  font-weight: 900;
+  font-size: clamp(26px, 3.4vw, 52px);
+  color: var(--color-red);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 0.96;
 }
 
 .company {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-orange);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
 }
 
 .roleDesc {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-ink);
   margin-top: 8px;
-}
-
-.location {
-  font-size: 11px;
-  color: var(--color-subtle);
-  letter-spacing: 0.02em;
+  font-weight: 400;
 }
 
 .bullets {
@@ -163,18 +215,19 @@ a.contactDetail:hover {
 }
 
 .bullets li {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
-  color: var(--color-muted);
-  padding-left: 14px;
+  color: var(--color-ink);
+  padding-left: 16px;
   position: relative;
+  font-weight: 400;
 }
 
 .bullets li::before {
   content: '—';
   position: absolute;
   left: 0;
-  color: var(--color-subtle);
+  color: var(--color-red);
   font-size: 12px;
 }
 
@@ -182,124 +235,88 @@ a.contactDetail:hover {
 .skillsGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .skillPill {
-  padding: 8px 18px;
-  border-radius: 100px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
+  padding: 9px 16px;
+  border-radius: 0;
+  border: 3px solid var(--color-red);
+  background: var(--color-yellow-hot);
   font-size: 13px;
-  font-weight: 500;
-  color: var(--color-muted);
-  letter-spacing: 0.02em;
-  transition:
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    background var(--transition-fast);
+  font-weight: 600;
+  color: var(--color-red);
+  letter-spacing: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .skillPill:hover {
-  border-color: var(--color-green);
-  color: var(--color-green);
-  background: rgba(220, 60, 36, 0.08);
-}
-
-/* ===== Values grid ===== */
-.valuesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.valueCard {
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: border-color var(--transition-fast), transform var(--transition-med);
-}
-
-.valueCard:hover {
-  border-color: var(--color-green);
-  transform: translateY(-4px);
-}
-
-.valueIndex {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--color-green);
-  letter-spacing: 0.05em;
-}
-
-.valueLabel {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.3px;
-  color: var(--color-text);
-}
-
-.valueBody {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--color-muted);
+  border-color: var(--color-red);
+  background: var(--color-accent-soft);
 }
 
 /* ===== Contact ===== */
 .contact {
-  margin-top: 80px;
-  text-align: center;
+  padding-top: clamp(72px, 9vw, 132px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 28px;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .contactHeading {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(36px, 5vw, 64px);
-  letter-spacing: -2px;
-  line-height: 1;
-  color: var(--color-text);
+  font-size: clamp(46px, 8vw, 118px);
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: var(--color-red);
+  text-transform: uppercase;
 }
 
 .contactAccent {
-  color: var(--color-green);
+  font-weight: 300;
   font-style: italic;
 }
 
 .contactCta {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 20px;
-  color: var(--color-orange);
-  border-bottom: 2px solid transparent;
-  padding-bottom: 2px;
-  transition:
-    color var(--transition-fast),
-    border-color var(--transition-fast);
+  font-size: clamp(14px, 1.1vw, 18px);
+  font-style: normal;
+  color: var(--color-yellow-hot);
+  border: 3px solid var(--color-red);
+  border-radius: 0;
+  padding: 14px 20px;
+  background: var(--color-red);
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  text-transform: lowercase;
 }
 
 .contactCta:hover {
-  color: var(--color-text);
-  border-color: var(--color-orange);
+  background: var(--color-yellow-hot);
+  color: var(--color-red);
+  transform: translateY(-2px);
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+  .main {
+    padding-top: 100px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroPortrait {
+    max-width: 360px;
+    transform: none;
+    box-shadow: 7px 7px 0 var(--color-accent);
+  }
+
   .timelineItem {
     grid-template-columns: 1fr;
     gap: 8px;
-  }
-
-  .valuesGrid {
-    grid-template-columns: 1fr;
   }
 }

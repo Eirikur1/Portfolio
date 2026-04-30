@@ -1,150 +1,124 @@
 .main {
   min-height: 100vh;
-  padding-top: 120px;
+  padding-top: 132px;
   padding-bottom: 160px;
-}
-
-/* ===== Split layout ===== */
-.layout {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
-}
-
-/* ===== Main content ===== */
-.content {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  background: var(--color-cream);
 }
 
 /* ===== Page header ===== */
 .header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.eyebrow {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-orange);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(18px, 3vw, 32px);
+  padding-bottom: clamp(42px, 6vw, 80px);
+  border-bottom: 5px solid var(--color-red);
+  margin-bottom: 0;
 }
 
 .heading {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(48px, 7vw, 80px);
-  letter-spacing: -2px;
-  line-height: 0.95;
-  color: var(--color-text);
-  text-transform: lowercase;
-}
-
-.headingAccent {
-  color: var(--color-green);
-  font-style: italic;
-}
-
-.headingPeriod {
-  color: var(--color-orange);
+  font-size: clamp(62px, 10.4vw, 164px);
+  letter-spacing: -0.085em;
+  line-height: 0.76;
+  color: var(--color-red);
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .sub {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--color-muted);
-  max-width: 420px;
+  font-size: clamp(18px, 2vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  max-width: 640px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-/* ===== Filter pills ===== */
+/* ===== Filter row ===== */
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0;
+  padding: 24px 0 32px;
+  border-bottom: 5px solid var(--color-red);
 }
 
 .filter {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 100px;
-  border: 1px solid var(--color-border);
-  background: transparent;
-  color: var(--color-muted);
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 0;
+  border: 3px solid var(--color-red);
+  border-right: 0;
+  background: var(--color-yellow-hot);
+  color: var(--color-red);
+  font-family: var(--font-heading);
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition:
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    background var(--transition-fast);
+  transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
 }
 
 .filter:hover {
-  border-color: var(--color-muted);
-  color: var(--color-text);
+  border-color: var(--color-red);
+  background: var(--color-accent-soft);
 }
 
 .filterActive {
-  border-color: var(--color-green);
-  background: rgba(220, 60, 36, 0.08);
-  color: var(--color-green);
+  border-color: var(--color-red);
+  background: var(--color-red);
+  color: var(--color-yellow-hot);
 }
 
 .filterActive:hover {
-  border-color: var(--color-green);
-  color: var(--color-green);
+  border-color: var(--color-red);
+  color: var(--color-yellow-hot);
+  background: var(--color-red);
+}
+
+.filter:last-child {
+  border-right: 3px solid var(--color-red);
 }
 
 .filterCount {
   font-size: 11px;
-  font-weight: 600;
-  background: var(--color-border);
-  border-radius: 100px;
-  padding: 1px 6px;
-  color: var(--color-subtle);
+  font-weight: 400;
+  opacity: 0.72;
 }
 
-.filterActive .filterCount {
-  background: rgba(220, 60, 36, 0.15);
-  color: var(--color-green);
-}
-
-/* ===== Project grid ===== */
-.grid {
+/* ===== Project list ===== */
+.list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 56px) clamp(20px, 3vw, 40px);
+  padding-top: 32px;
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .layout {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  /* Override sidebar sticky to static on mobile */
-  .layout > aside {
-    position: static;
-    width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .main {
     padding-top: 100px;
   }
 
-  .grid {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .heading {
+    font-size: clamp(48px, 15vw, 82px);
+  }
+
+  .sub {
+    grid-column: auto;
+  }
+
+  .list {
     grid-template-columns: 1fr;
   }
 }

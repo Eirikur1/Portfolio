@@ -1,21 +1,64 @@
 import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
 import { featuredProjects } from '../data/projects';
-import ProjectCard from '../components/ProjectCard';
-import Typewriter from '../components/Typewriter';
+import ProjectRow from '../components/ProjectCard';
 import styles from './Home.module.css';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const containerVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
 };
+
+const heroHeadingVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.075,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const heroLetterVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: '0.7em',
+    rotate: -3,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 0.65,
+      ease,
+    },
+  },
+};
+
+const heroName = Array.from('Eiríkur');
+
+const profileNotes = [
+  {
+    title: 'Developer / designer',
+    detail: 'React, mobile products, identities, and interactive systems.',
+  },
+  {
+    title: 'Based in Reykjavík',
+    detail: 'Studying web development while building practical digital work.',
+  },
+  {
+    title: 'Available for projects',
+    detail: 'Full-time, freelance, collaborations, and weird web ideas.',
+  },
+];
 
 export default function Home() {
   return (
@@ -29,49 +72,53 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            <motion.h1 className={styles.heroHeading} variants={itemVariants}>
-              Crafting
-              <br />
-              <Typewriter
-                className={styles.heroTypewriter}
-                words={[
-                  'with intention',
-                  'with purpose',
-                  'for the web',
-                ]}
-                color="var(--color-green)"
-              />
-            </motion.h1>
+            <motion.div className={styles.heroIntro} variants={itemVariants}>
+              <motion.h1
+                className={styles.heroHeading}
+                variants={heroHeadingVariants}
+                aria-label="Eiríkur"
+              >
+                {heroName.map((letter, i) => (
+                  <motion.span
+                    className={styles.heroLetter}
+                    variants={heroLetterVariants}
+                    aria-hidden="true"
+                    key={`${letter}-${i}`}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              <p className={styles.heroSub}>
+                A developer and designer making websites, apps, and brands with personality.
+              </p>
+            </motion.div>
 
-            <motion.p className={styles.heroSub} variants={itemVariants}>
-              I&apos;m Eiríkur, a developer and designer based in Reykjavík.
-              I have a strong passion for web development, technology, and
-              finding creative solutions to real problems.
-            </motion.p>
-
-            <motion.div className={styles.heroCtas} variants={itemVariants}>
-              <Link to="/projects" className={styles.ctaPrimary}>
-                View work
-              </Link>
+            <motion.div className={styles.profileGrid} variants={itemVariants}>
+              {profileNotes.map((note) => (
+                <article className={styles.profileNote} key={note.title}>
+                  <h2>{note.title}</h2>
+                  <p>{note.detail}</p>
+                </article>
+              ))}
             </motion.div>
           </motion.div>
         </div>
-
       </section>
 
       {/* ===== Featured projects ===== */}
       <section className={styles.featured}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Things I've made.</h2>
+            <span className={styles.sectionTitle}>Selected work</span>
             <Link to="/projects" className={styles.seeAll}>
               All projects →
             </Link>
           </div>
 
-          <div className={styles.projectGrid}>
+          <div>
             {featuredProjects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
+              <ProjectRow key={project.id} project={project} index={i} />
             ))}
           </div>
         </div>
@@ -99,7 +146,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className={styles.contactHeading}>
-              Open to opportunities.
+              Open to<br />opportunities.
             </h2>
             <p className={styles.contactSub}>Full-time, freelance, or collaboration.</p>
             <a href="mailto:Eirikurak@gmail.com" className={styles.contactCta}>
