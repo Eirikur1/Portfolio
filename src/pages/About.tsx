@@ -67,7 +67,7 @@ export default function About() {
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>About</p>
             <h1 className={styles.heading}>
-              Curious hands, practical mind, visual instinct.
+              Creative developer with a hands-on mindset.
             </h1>
             <p className={styles.bio}>
               I&apos;m Eiríkur, an ambitious and creative developer/designer based
@@ -75,9 +75,9 @@ export default function About() {
               memorable, and cared for.
             </p>
             <p className={styles.bio}>
-              My background mixes entrepreneurship, construction-level precision,
-              and web development studies at Tækniskólinn, which gives my work a
-              grounded, get-it-shipped rhythm.
+              I come from a mix of business ownership, practical work, and web
+              development studies at Tækniskólinn, so I like making things that
+              look good and actually work.
             </p>
             <div className={styles.contactInfo}>
               <a href="mailto:Eirikurak@gmail.com" className={styles.contactDetail}>

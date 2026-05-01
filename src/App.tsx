@@ -22,6 +22,16 @@ function AppInner() {
   const [gameOpen, setGameOpen] = useState(false);
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
+
+  useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
     function raf(time: number) {
       lenis.raf(time);

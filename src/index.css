@@ -111,9 +111,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at 12% 8%, rgba(255, 183, 47, 0.44), transparent 24rem),
-    linear-gradient(180deg, var(--color-yellow-hot) 0 15rem, var(--color-bg) 15rem 100%);
+  background: var(--color-surface);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 16px;
