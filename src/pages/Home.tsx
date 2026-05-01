@@ -43,7 +43,34 @@ const heroLetterVariants: Variants = {
   },
 };
 
+const heroSubVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.045,
+      delayChildren: 0.35,
+    },
+  },
+};
+
+const heroWordVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: '0.8em',
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease,
+    },
+  },
+};
+
 const heroName = Array.from('Eiríkur');
+const heroSubtitle =
+  'A developer and designer making websites, apps, and brands with personality.';
 
 const profileNotes = [
   {
@@ -89,9 +116,23 @@ export default function Home() {
                   </motion.span>
                 ))}
               </motion.h1>
-              <p className={styles.heroSub}>
-                A developer and designer making websites, apps, and brands with personality.
-              </p>
+              <motion.p
+                className={styles.heroSub}
+                variants={heroSubVariants}
+                aria-label={heroSubtitle}
+              >
+                {heroSubtitle.split(' ').map((word, i) => (
+                  <motion.span
+                    className={styles.heroSubWord}
+                    variants={heroWordVariants}
+                    aria-hidden="true"
+                    key={`${word}-${i}`}
+                  >
+                    {word}
+                    {i < heroSubtitle.split(' ').length - 1 ? '\u00a0' : ''}
+                  </motion.span>
+                ))}
+              </motion.p>
             </motion.div>
 
             <motion.div className={styles.profileGrid} variants={itemVariants}>

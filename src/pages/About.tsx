@@ -65,7 +65,7 @@ export default function About() {
           transition={{ duration: 0.7, ease }}
         >
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>About / Reykjavík</p>
+            <p className={styles.eyebrow}>About</p>
             <h1 className={styles.heading}>
               Curious hands, practical mind, visual instinct.
             </h1>
