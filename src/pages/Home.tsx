@@ -1,8 +1,12 @@
+import { useEffect, useState, type ComponentType } from 'react';
+import type { LottieComponentProps } from 'lottie-react';
 import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
 import { featuredProjects } from '../data/projects';
 import ProjectRow from '../components/ProjectCard';
 import styles from './Home.module.css';
+import heyPopupAnimationUrl from '../assets/EikiHeyWhatsUpSeeYouAround.json?url';
+import popupAnimationUrl from '../assets/EikiPopup.json?url';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -87,7 +91,52 @@ const profileNotes = [
   },
 ];
 
+const popupAnimationUrls = [popupAnimationUrl, heyPopupAnimationUrl];
+
 export default function Home() {
+  const [showHeroPopup, setShowHeroPopup] = useState(false);
+  const [heroPopupAnimation, setHeroPopupAnimation] = useState<unknown>(null);
+  const [HeroPopupPlayer, setHeroPopupPlayer] =
+    useState<ComponentType<LottieComponentProps> | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const popupTimer = window.setTimeout(() => {
+      setShowHeroPopup(true);
+    }, 5000);
+
+    const selectedAnimationUrl =
+      popupAnimationUrls[Math.floor(Math.random() * popupAnimationUrls.length)];
+    const animationData = fetch(selectedAnimationUrl, { signal: controller.signal }).then(
+      (response) => {
+        if (!response.ok) {
+          throw new Error('Unable to load hero popup animation.');
+        }
+
+        return response.json();
+      },
+    );
+    const lottiePlayer = import('lottie-react').then((module) => {
+      const defaultExport = module.default as
+        | ComponentType<LottieComponentProps>
+        | { default: ComponentType<LottieComponentProps> };
+
+      return typeof defaultExport === 'function' ? defaultExport : defaultExport.default;
+    });
+
+    Promise.all([animationData, lottiePlayer])
+      .then(([animation, Player]) => {
+        setHeroPopupAnimation(animation);
+        setHeroPopupPlayer(() => Player);
+      })
+      .catch(() => {});
+
+    return () => {
+      controller.abort();
+      window.clearTimeout(popupTimer);
+    };
+  }, []);
+
   return (
     <main className={styles.main}>
       {/* ===== Hero ===== */}
@@ -145,6 +194,18 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
+
+        {showHeroPopup && heroPopupAnimation !== null && HeroPopupPlayer !== null && (
+          <motion.div
+            className={styles.heroPopup}
+            initial={{ opacity: 0, x: -28, y: 24, scale: 0.94 }}
+            animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            transition={{ duration: 0.55, ease }}
+            aria-hidden="true"
+          >
+            <HeroPopupPlayer animationData={heroPopupAnimation} loop={false} autoplay />
+          </motion.div>
+        )}
       </section>
 
       {/* ===== Featured projects ===== */}

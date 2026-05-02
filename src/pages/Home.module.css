@@ -131,6 +131,21 @@
   color: var(--color-ink);
 }
 
+.heroPopup {
+  position: fixed;
+  right: clamp(-18px, -1vw, -6px);
+  bottom: 0;
+  z-index: 20;
+  width: clamp(280px, 30vw, 460px);
+  pointer-events: none;
+}
+
+.heroPopup svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .heroBottom {
   display: grid;
   grid-template-columns: minmax(360px, 1fr) minmax(320px, 0.72fr);
@@ -492,6 +507,11 @@
 
   .profileNote:last-child {
     border-bottom: 0;
+  }
+
+  .heroPopup {
+    right: clamp(-12px, -2.5vw, -6px);
+    width: clamp(220px, 64vw, 320px);
   }
 
   .heroBottom {
