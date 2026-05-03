@@ -532,6 +532,21 @@
     font-size: clamp(28px, 8.6vw, 52px);
   }
 
+  .heroRepeatAnimation {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    width: 100vw;
+    transform: translate(-50%, -50%);
+  }
+
+  .heroRepeatAnimation > div,
+  .heroRepeatAnimation svg {
+    width: 100vw;
+    height: auto;
+  }
+
   .profileGrid {
     grid-template-columns: 1fr;
   }
