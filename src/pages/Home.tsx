@@ -109,7 +109,7 @@ export default function Home() {
     }, 1000);
     const popupTimer = window.setTimeout(() => {
       setShowHeroPopup(true);
-    }, 5000);
+    }, 2500);
 
     const selectedAnimationUrl =
       popupAnimationUrls[Math.floor(Math.random() * popupAnimationUrls.length)];
