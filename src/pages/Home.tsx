@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentType } from 'react';
+import { useCallback, useEffect, useRef, useState, type ComponentType } from 'react';
 import type { LottieComponentProps } from 'lottie-react';
 import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
@@ -95,16 +95,78 @@ const profileNotes = [
 
 const popupAnimationUrls = [popupAnimationUrl, heyPopupAnimationUrl];
 const heroMobileQuery = '(max-width: 768px)';
+const repeatAnimationLoaders = import.meta.glob('../assets/Repeatjson/*.json', {
+  query: '?url',
+  import: 'default',
+}) as Record<string, () => Promise<string>>;
+const repeatAnimationEntries = Object.values(repeatAnimationLoaders);
+
+function getRepeatAnimationDelay() {
+  return 10000 + Math.floor(Math.random() * 5000);
+}
 
 export default function Home() {
+  const repeatTimerRef = useRef<number | null>(null);
+  const isMountedRef = useRef(false);
   const [showHeroPopup, setShowHeroPopup] = useState(false);
   const [showFallingHeroAnimation, setShowFallingHeroAnimation] = useState(false);
   const [heroPopupAnimation, setHeroPopupAnimation] = useState<unknown>(null);
   const [fallingHeroAnimation, setFallingHeroAnimation] = useState<unknown>(null);
+  const [repeatHeroAnimation, setRepeatHeroAnimation] = useState<unknown>(null);
+  const [repeatHeroAnimationKey, setRepeatHeroAnimationKey] = useState(0);
   const [LottiePlayer, setLottiePlayer] =
     useState<ComponentType<LottieComponentProps> | null>(null);
 
+  const clearRepeatAnimationTimer = useCallback(() => {
+    if (repeatTimerRef.current !== null) {
+      window.clearTimeout(repeatTimerRef.current);
+      repeatTimerRef.current = null;
+    }
+  }, []);
+
+  const playRandomRepeatAnimation = useCallback(() => {
+    const selectedLoader =
+      repeatAnimationEntries[Math.floor(Math.random() * repeatAnimationEntries.length)];
+
+    if (!selectedLoader) {
+      return;
+    }
+
+    selectedLoader()
+      .then((animationUrl) => fetch(animationUrl))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Unable to load repeat hero animation.');
+        }
+
+        return response.json();
+      })
+      .then((animation) => {
+        if (!isMountedRef.current) {
+          return;
+        }
+
+        setRepeatHeroAnimation(animation);
+        setRepeatHeroAnimationKey((key) => key + 1);
+      })
+      .catch(() => {});
+  }, []);
+
+  const scheduleRepeatAnimation = useCallback(() => {
+    clearRepeatAnimationTimer();
+
+    if (repeatAnimationEntries.length === 0) {
+      return;
+    }
+
+    repeatTimerRef.current = window.setTimeout(
+      playRandomRepeatAnimation,
+      getRepeatAnimationDelay(),
+    );
+  }, [clearRepeatAnimationTimer, playRandomRepeatAnimation]);
+
   useEffect(() => {
+    isMountedRef.current = true;
     const controller = new AbortController();
     const fallingTimer = window.setTimeout(() => {
       setShowFallingHeroAnimation(true);
@@ -149,11 +211,13 @@ export default function Home() {
     lottiePlayer.then((Player) => setLottiePlayer(() => Player)).catch(() => {});
 
     return () => {
+      isMountedRef.current = false;
       controller.abort();
+      clearRepeatAnimationTimer();
       window.clearTimeout(fallingTimer);
       window.clearTimeout(popupTimer);
     };
-  }, []);
+  }, [clearRepeatAnimationTimer]);
 
   return (
     <main className={styles.main}>
@@ -165,8 +229,30 @@ export default function Home() {
               animationData={fallingHeroAnimation}
               loop={false}
               autoplay
-              onComplete={() => setShowFallingHeroAnimation(false)}
+              onComplete={() => {
+                setShowFallingHeroAnimation(false);
+                scheduleRepeatAnimation();
+              }}
               rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+            />
+          </div>
+        )}
+
+        {repeatHeroAnimation !== null && LottiePlayer !== null && (
+          <div
+            className={`${styles.heroFallingAnimation} ${styles.heroRepeatAnimation}`}
+            aria-hidden="true"
+          >
+            <LottiePlayer
+              key={repeatHeroAnimationKey}
+              animationData={repeatHeroAnimation}
+              loop={false}
+              autoplay
+              onComplete={() => {
+                setRepeatHeroAnimation(null);
+                scheduleRepeatAnimation();
+              }}
+              rendererSettings={{ preserveAspectRatio: 'xMidYMid meet' }}
             />
           </div>
         )}
