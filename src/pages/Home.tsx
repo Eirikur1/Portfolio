@@ -6,6 +6,7 @@ import { featuredProjects } from '../data/projects';
 import ProjectRow from '../components/ProjectCard';
 import styles from './Home.module.css';
 import fallingAnimationUrl from '../assets/FallingEiki.json?url';
+import fallingMobileAnimationUrl from '../assets/FallingEikiMobile.json?url';
 import heyPopupAnimationUrl from '../assets/EikiHeyWhatsUpSeeYouAround.json?url';
 import popupAnimationUrl from '../assets/EikiPopup.json?url';
 
@@ -93,6 +94,7 @@ const profileNotes = [
 ];
 
 const popupAnimationUrls = [popupAnimationUrl, heyPopupAnimationUrl];
+const heroMobileQuery = '(max-width: 768px)';
 
 export default function Home() {
   const [showHeroPopup, setShowHeroPopup] = useState(false);
@@ -122,7 +124,10 @@ export default function Home() {
         return response.json();
       },
     );
-    const fallingAnimationData = fetch(fallingAnimationUrl, { signal: controller.signal }).then(
+    const selectedFallingAnimationUrl = window.matchMedia(heroMobileQuery).matches
+      ? fallingMobileAnimationUrl
+      : fallingAnimationUrl;
+    const fallingAnimationData = fetch(selectedFallingAnimationUrl, { signal: controller.signal }).then(
       (response) => {
         if (!response.ok) {
           throw new Error('Unable to load falling hero animation.');
