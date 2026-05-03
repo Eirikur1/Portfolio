@@ -5,6 +5,7 @@ import { motion, type Variants } from 'framer-motion';
 import { featuredProjects } from '../data/projects';
 import ProjectRow from '../components/ProjectCard';
 import styles from './Home.module.css';
+import fallingAnimationUrl from '../assets/FallingEiki.json?url';
 import heyPopupAnimationUrl from '../assets/EikiHeyWhatsUpSeeYouAround.json?url';
 import popupAnimationUrl from '../assets/EikiPopup.json?url';
 
@@ -95,22 +96,36 @@ const popupAnimationUrls = [popupAnimationUrl, heyPopupAnimationUrl];
 
 export default function Home() {
   const [showHeroPopup, setShowHeroPopup] = useState(false);
+  const [showFallingHeroAnimation, setShowFallingHeroAnimation] = useState(false);
   const [heroPopupAnimation, setHeroPopupAnimation] = useState<unknown>(null);
-  const [HeroPopupPlayer, setHeroPopupPlayer] =
+  const [fallingHeroAnimation, setFallingHeroAnimation] = useState<unknown>(null);
+  const [LottiePlayer, setLottiePlayer] =
     useState<ComponentType<LottieComponentProps> | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
+    const fallingTimer = window.setTimeout(() => {
+      setShowFallingHeroAnimation(true);
+    }, 1000);
     const popupTimer = window.setTimeout(() => {
       setShowHeroPopup(true);
     }, 5000);
 
     const selectedAnimationUrl =
       popupAnimationUrls[Math.floor(Math.random() * popupAnimationUrls.length)];
-    const animationData = fetch(selectedAnimationUrl, { signal: controller.signal }).then(
+    const popupAnimationData = fetch(selectedAnimationUrl, { signal: controller.signal }).then(
       (response) => {
         if (!response.ok) {
           throw new Error('Unable to load hero popup animation.');
+        }
+
+        return response.json();
+      },
+    );
+    const fallingAnimationData = fetch(fallingAnimationUrl, { signal: controller.signal }).then(
+      (response) => {
+        if (!response.ok) {
+          throw new Error('Unable to load falling hero animation.');
         }
 
         return response.json();
@@ -124,15 +139,13 @@ export default function Home() {
       return typeof defaultExport === 'function' ? defaultExport : defaultExport.default;
     });
 
-    Promise.all([animationData, lottiePlayer])
-      .then(([animation, Player]) => {
-        setHeroPopupAnimation(animation);
-        setHeroPopupPlayer(() => Player);
-      })
-      .catch(() => {});
+    popupAnimationData.then(setHeroPopupAnimation).catch(() => {});
+    fallingAnimationData.then(setFallingHeroAnimation).catch(() => {});
+    lottiePlayer.then((Player) => setLottiePlayer(() => Player)).catch(() => {});
 
     return () => {
       controller.abort();
+      window.clearTimeout(fallingTimer);
       window.clearTimeout(popupTimer);
     };
   }, []);
@@ -141,6 +154,18 @@ export default function Home() {
     <main className={styles.main}>
       {/* ===== Hero ===== */}
       <section className={styles.hero}>
+        {showFallingHeroAnimation && fallingHeroAnimation !== null && LottiePlayer !== null && (
+          <div className={styles.heroFallingAnimation} aria-hidden="true">
+            <LottiePlayer
+              animationData={fallingHeroAnimation}
+              loop={false}
+              autoplay
+              onComplete={() => setShowFallingHeroAnimation(false)}
+              rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
+            />
+          </div>
+        )}
+
         <div className="container">
           <motion.div
             className={styles.heroInner}
@@ -195,7 +220,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {showHeroPopup && heroPopupAnimation !== null && HeroPopupPlayer !== null && (
+        {showHeroPopup && heroPopupAnimation !== null && LottiePlayer !== null && (
           <motion.div
             className={styles.heroPopup}
             initial={{ opacity: 0, x: -28, y: 24, scale: 0.94 }}
@@ -203,7 +228,7 @@ export default function Home() {
             transition={{ duration: 0.55, ease }}
             aria-hidden="true"
           >
-            <HeroPopupPlayer animationData={heroPopupAnimation} loop={false} autoplay />
+            <LottiePlayer animationData={heroPopupAnimation} loop={false} autoplay />
           </motion.div>
         )}
       </section>
