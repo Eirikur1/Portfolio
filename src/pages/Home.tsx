@@ -99,7 +99,10 @@ const repeatAnimationLoaders = import.meta.glob('../assets/Repeatjson/*.json', {
   query: '?url',
   import: 'default',
 }) as Record<string, () => Promise<string>>;
-const repeatAnimationEntries = Object.values(repeatAnimationLoaders);
+const repeatAnimationEntries = Object.entries(repeatAnimationLoaders).map(([path, load]) => ({
+  id: path.split('/').pop()?.replace(/\.json$/, '') ?? path,
+  load,
+}));
 
 function getRepeatAnimationDelay() {
   return 10000 + Math.floor(Math.random() * 5000);
@@ -114,6 +117,7 @@ export default function Home() {
   const [fallingHeroAnimation, setFallingHeroAnimation] = useState<unknown>(null);
   const [repeatHeroAnimation, setRepeatHeroAnimation] = useState<unknown>(null);
   const [repeatHeroAnimationKey, setRepeatHeroAnimationKey] = useState(0);
+  const [repeatHeroAnimationId, setRepeatHeroAnimationId] = useState('');
   const [LottiePlayer, setLottiePlayer] =
     useState<ComponentType<LottieComponentProps> | null>(null);
 
@@ -125,14 +129,15 @@ export default function Home() {
   }, []);
 
   const playRandomRepeatAnimation = useCallback(() => {
-    const selectedLoader =
+    const selectedEntry =
       repeatAnimationEntries[Math.floor(Math.random() * repeatAnimationEntries.length)];
 
-    if (!selectedLoader) {
+    if (!selectedEntry) {
       return;
     }
 
-    selectedLoader()
+    selectedEntry
+      .load()
       .then((animationUrl) => fetch(animationUrl))
       .then((response) => {
         if (!response.ok) {
@@ -147,6 +152,7 @@ export default function Home() {
         }
 
         setRepeatHeroAnimation(animation);
+        setRepeatHeroAnimationId(selectedEntry.id);
         setRepeatHeroAnimationKey((key) => key + 1);
       })
       .catch(() => {});
@@ -240,7 +246,9 @@ export default function Home() {
 
         {repeatHeroAnimation !== null && LottiePlayer !== null && (
           <div
-            className={`${styles.heroFallingAnimation} ${styles.heroRepeatAnimation}`}
+            className={`${styles.heroFallingAnimation} ${styles.heroRepeatAnimation} ${
+              repeatHeroAnimationId === 'clickedon' ? styles.heroRepeatAnimationClicked : ''
+            }`}
             aria-hidden="true"
           >
             <LottiePlayer
@@ -250,6 +258,7 @@ export default function Home() {
               autoplay
               onComplete={() => {
                 setRepeatHeroAnimation(null);
+                setRepeatHeroAnimationId('');
                 scheduleRepeatAnimation();
               }}
               rendererSettings={{ preserveAspectRatio: 'xMidYMid meet' }}

@@ -538,13 +538,27 @@
     right: auto;
     bottom: auto;
     width: 100vw;
+    height: calc(100vw * 9 / 16);
     transform: translate(-50%, -50%);
   }
 
   .heroRepeatAnimation > div,
   .heroRepeatAnimation svg {
     width: 100vw;
+    height: 100%;
+  }
+
+  .heroRepeatAnimationClicked {
+    top: 0;
+    bottom: 0;
     height: auto;
+    transform: translateX(-50%);
+  }
+
+  .heroRepeatAnimationClicked > div,
+  .heroRepeatAnimationClicked svg {
+    width: 100vw;
+    height: 100%;
   }
 
   .profileGrid {
