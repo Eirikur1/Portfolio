@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { RiGithubLine } from 'react-icons/ri';
 import { FaLinkedinIn } from 'react-icons/fa6';
+import { useEffect, useRef } from 'react';
 import styles from './Navigation.module.css';
 
 const navLinks = [
@@ -8,6 +9,29 @@ const navLinks = [
   { to: '/projects', label: 'Projects' },
   { to: '/about', label: 'About' },
 ];
+
+function CharStagger({ text }: { text: string }) {
+  const spanRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = spanRef.current;
+    if (!el) return;
+    el.innerHTML = '';
+    [...text].forEach((char, i) => {
+      const s = document.createElement('span');
+      s.textContent = char;
+      s.style.transitionDelay = `${i * 0.01}s`;
+      if (char === ' ') s.style.whiteSpace = 'pre';
+      el.appendChild(s);
+    });
+  }, [text]);
+
+  return (
+    <span data-button-animate-chars="" className={styles.btnText} ref={spanRef}>
+      {text}
+    </span>
+  );
+}
 
 export default function Navigation() {
   return (
@@ -19,10 +43,11 @@ export default function Navigation() {
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.linkActive : ''}`
+              `${styles.link} btn-animate-chars ${isActive ? styles.linkActive : ''}`
             }
           >
-            {label}
+            <div className="btn-animate-chars__bg" />
+            <CharStagger text={label} />
           </NavLink>
         ))}
       </nav>
