@@ -15,7 +15,6 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
   const [imageFailed, setImageFailed] = useState(false);
   const cardStyle = {
     '--project-accent': project.accent,
-    cursor: project.link ? 'pointer' : 'default',
   } as CSSProperties;
 
   const handleClick = () => {
@@ -45,6 +44,7 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
         transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
         onClick={handleClick}
         style={cardStyle}
+        data-cursor={project.link ? 'pointer' : undefined}
       >
         <div className={styles.media}>
           <div className={styles.mediaInner} aria-hidden="true">
@@ -81,6 +81,7 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
       onClick={handleClick}
       style={cardStyle}
       role={project.link ? 'link' : undefined}
+      data-cursor={project.link ? 'pointer' : undefined}
     >
       <div className={styles.rowMedia} aria-hidden="true">
         {media}

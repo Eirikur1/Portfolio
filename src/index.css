@@ -110,6 +110,15 @@ html {
   scroll-behavior: smooth;
 }
 
+html.customCursor,
+html.customCursor:hover,
+html.customCursor *,
+html.customCursor *:hover,
+html.customCursor *::before,
+html.customCursor *::after {
+  cursor: none !important;
+}
+
 body {
   background: var(--color-surface);
   color: var(--color-ink);
@@ -133,7 +142,6 @@ a {
 }
 
 button {
-  cursor: pointer;
   border: none;
   background: none;
   font-family: inherit;

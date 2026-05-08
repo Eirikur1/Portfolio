@@ -1,0 +1,38 @@
+.cursor {
+  z-index: 9999;
+  pointer-events: none;
+  position: fixed;
+  inset: 0% auto auto 0%;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cursor.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.inner {
+  width: 2em;
+  display: block;
+}
+
+.hoverPointer {
+  display: none;
+  width: 2.5em;
+}
+
+.cursor[data-variant="pointer"] .regular {
+  display: none;
+}
+
+.cursor[data-variant="pointer"] .hoverPointer {
+  display: block;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import Lenis from 'lenis';
 import Navigation from './components/Navigation';
+import Cursor from './components/Cursor';
 import HiredEasterEgg from './components/HiredEasterEgg';
 import GameModal from './components/GameModal';
 import Home from './pages/Home';
@@ -46,6 +47,7 @@ function AppInner() {
 
   return (
     <>
+      <Cursor />
       <Navigation />
       <HiredEasterEgg onGameTrigger={() => setGameOpen(true)} />
       {gameOpen && <GameModal onClose={() => setGameOpen(false)} />}

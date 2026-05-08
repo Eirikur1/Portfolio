@@ -17,7 +17,6 @@
 
 .link {
   color: var(--color-text);
-  cursor: pointer;
   border-radius: 0.25em;
   justify-content: center;
   align-items: center;
