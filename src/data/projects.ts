@@ -25,7 +25,7 @@ export const projects: Project[] = [
     tags: ['Design', 'Development', 'Motion', 'React', 'TypeScript', 'Supabase'],
     accent: '#00522f',
     image: '/Apabiz.png',
-    link: 'https://landagisk.vercel.app/is',
+    link: 'https://apabiz.games/en',
     featured: true,
     wip: true,
   },
