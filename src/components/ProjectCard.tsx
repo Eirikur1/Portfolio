@@ -11,6 +11,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index, variant = 'row' }: ProjectCardProps) {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
   const [imageFailed, setImageFailed] = useState(false);
   const cardStyle = {
@@ -21,8 +22,39 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
     if (project.link) window.open(project.link, '_blank');
   };
 
+  const handleMouseEnter = () => {
+    if (project.playOnHover && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (project.playOnHover && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   const media = project.video ? (
-    <video src={project.video} className={styles.projectVideo} autoPlay muted loop playsInline />
+    <>
+      <video
+        ref={videoRef}
+        src={project.video}
+        className={styles.projectVideo}
+        autoPlay={!project.playOnHover}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+      {project.playOnHover && project.image && (
+        <img
+          src={project.image}
+          alt={project.title}
+          className={`${styles.projectImage} ${styles.hoverThumbnail}`}
+        />
+      )}
+    </>
   ) : project.image && !imageFailed ? (
     <img
       src={project.image}
@@ -31,7 +63,7 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
       onError={() => setImageFailed(true)}
     />
   ) : (
-    <span className={styles.projectNumber}>{project.id}</span>
+    <span className={styles.projectNumber}>{project.title}</span>
   );
 
   if (variant === 'card') {
@@ -43,9 +75,16 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
         onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         style={cardStyle}
         data-cursor={project.link ? 'pointer' : undefined}
       >
+        <div className={styles.cardTopMeta}>
+          <span className={styles.cardTopLabel} aria-hidden="true" />
+          <span className={styles.cardTopLabel}>{project.year}</span>
+        </div>
+
         <div className={styles.media}>
           <div className={styles.mediaInner} aria-hidden="true">
             {media}
@@ -53,19 +92,9 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
           {project.wip && <span className={styles.wipBadge}>In progress</span>}
         </div>
 
-        <div className={styles.content}>
-          <div className={styles.meta}>
-            <span className={styles.category}>{project.category}</span>
-            <span className={styles.year}>{project.year}</span>
-          </div>
-          <h3 className={styles.title}>{project.title}</h3>
-          <p className={styles.description} style={{ opacity: 1, maxHeight: 'none' }}>{project.description}</p>
-          <ul className={styles.tags}>
-            {project.tags.map((tag) => (
-              <li key={tag} className={styles.tag}>{tag}</li>
-            ))}
-          </ul>
-          {project.link && <span className={styles.projectLink}>view project →</span>}
+        <div className={styles.cardBottomMeta}>
+          <h3 className={styles.cardTitle}>{project.title}</h3>
+          <span className={styles.cardYear}>{project.tags.slice(0, 3).join(' / ')}</span>
         </div>
       </motion.article>
     );
@@ -79,6 +108,8 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.3), ease: [0.16, 1, 0.3, 1] }}
       onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       style={cardStyle}
       role={project.link ? 'link' : undefined}
       data-cursor={project.link ? 'pointer' : undefined}
@@ -93,10 +124,7 @@ export default function ProjectCard({ project, index, variant = 'row' }: Project
       </div>
 
       <div className={styles.right}>
-        <span className={styles.category}>{project.category}</span>
         <span className={styles.year}>{project.year}</span>
-        {project.wip && <span className={styles.wipBadge}>In progress</span>}
-        {project.link && <span className={styles.arrow}>→</span>}
       </div>
     </motion.article>
   );

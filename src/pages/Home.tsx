@@ -75,23 +75,7 @@ const heroWordVariants: Variants = {
 };
 
 const heroName = Array.from('Eiríkur');
-const heroSubtitle =
-  'A developer and designer making websites, apps, and brands with personality.';
-
-const profileNotes = [
-  {
-    title: 'Developer / designer',
-    detail: 'React, mobile products, identities, and interactive systems.',
-  },
-  {
-    title: 'Based in Reykjavík',
-    detail: 'Studying web development while building practical digital work.',
-  },
-  {
-    title: 'Available for projects',
-    detail: 'Full-time, freelance, collaborations, and weird web ideas.',
-  },
-];
+const heroSubtitle = 'Developer and designer';
 
 const popupAnimationUrls = [popupAnimationUrl, heyPopupAnimationUrl];
 const heroMobileQuery = '(max-width: 768px)';
@@ -309,14 +293,6 @@ export default function Home() {
               </motion.p>
             </motion.div>
 
-            <motion.div className={styles.profileGrid} variants={itemVariants}>
-              {profileNotes.map((note) => (
-                <article className={styles.profileNote} key={note.title}>
-                  <h2>{note.title}</h2>
-                  <p>{note.detail}</p>
-                </article>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
 
@@ -336,15 +312,18 @@ export default function Home() {
       {/* ===== Featured projects ===== */}
       <section className={styles.featured}>
         <div className="container">
+          <p className={styles.featuredStatus}>
+            Based in Reykjavík · Open for freelance and full-time
+          </p>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionTitle}>Selected work</span>
             <Link to="/projects" className={styles.seeAll}>
-              All projects →
+              All projects
             </Link>
           </div>
 
           <div>
-            {featuredProjects.map((project, i) => (
+            {featuredProjects.slice(0, 3).map((project, i) => (
               <ProjectRow key={project.id} project={project} index={i} />
             ))}
           </div>
@@ -356,32 +335,11 @@ export default function Home() {
         <div className={styles.marqueeTrack}>
           {[...Array(6)].map((_, i) => (
             <span key={i} className={styles.marqueeContent}>
-              Design<span>◆</span>Development<span>◆</span>Branding<span>◆</span>Motion<span>◆</span>React Native<span>◆</span>Mobile<span>◆</span>Web<span>◆</span>
+              Interfaces / Identities / Interactive systems / Reykjavík / 2026 /{' '}
             </span>
           ))}
         </div>
       </div>
-
-      {/* ===== Contact CTA ===== */}
-      <section className={styles.contact}>
-        <div className="container">
-          <motion.div
-            className={styles.contactInner}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 className={styles.contactHeading}>
-              Open to<br />opportunities.
-            </h2>
-            <p className={styles.contactSub}>Full-time, freelance, or collaboration.</p>
-            <a href="mailto:Eirikurak@gmail.com" className={styles.contactCta}>
-              Eirikurak@gmail.com →
-            </a>
-          </motion.div>
-        </div>
-      </section>
     </main>
   );
 }

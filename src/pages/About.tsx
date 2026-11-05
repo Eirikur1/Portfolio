@@ -3,6 +3,17 @@ import styles from './About.module.css';
 
 const experience = [
   {
+    role: 'Intern',
+    company: 'Jökulá',
+    location: 'Reykjavík',
+    period: 'Summer 2026',
+    bullets: [
+      'Worked on multiple projects across frontend and backend development',
+      'Redesigned and rebuilt client products end-to-end',
+      'Moved between Figma and code throughout, designing interfaces and shipping them',
+    ],
+  },
+  {
     role: 'Founder',
     company: 'Pizza Port',
     location: 'Reykjavík',
@@ -65,31 +76,24 @@ export default function About() {
           transition={{ duration: 0.7, ease }}
         >
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>About</p>
             <h1 className={styles.heading}>
-              Creative developer with a hands-on mindset.
+              Design and code, out of Reykjavík
             </h1>
             <p className={styles.bio}>
-              I&apos;m Eiríkur, an ambitious and creative developer/designer based
-              in Reykjavík. I like building web products that feel useful,
-              memorable, and cared for.
+              I&apos;m Eiríkur, a developer and designer based in Reykjavík. I
+              make interfaces, identities, and interactive things on the web.
             </p>
             <p className={styles.bio}>
-              I come from a mix of business ownership, practical work, and web
-              development studies at Tækniskólinn, so I like making things that
-              look good and actually work.
+              Before web development, I ran Pizza Port and worked in
+              construction. That mix is why I care about things that look good
+              and actually work.
             </p>
             <div className={styles.contactInfo}>
               <a href="mailto:Eirikurak@gmail.com" className={styles.contactDetail}>
                 Eirikurak@gmail.com
               </a>
-              <span className={styles.contactDetail}>108 Reykjavík</span>
             </div>
           </div>
-          <figure className={styles.heroPortrait}>
-            <img src="/IMG_3781%202.JPG" alt="" />
-            <figcaption>available for web, app, and identity work</figcaption>
-          </figure>
         </motion.section>
 
         {/* ===== Experience ===== */}
@@ -162,35 +166,6 @@ export default function About() {
           </ol>
         </motion.section>
 
-        {/* ===== Skills ===== */}
-        <motion.section
-          className={styles.section}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7, ease }}
-        >
-          <h2 className={styles.sectionTitle}>Skills</h2>
-          <div className={styles.skillsGrid}>
-            {[
-              'React', 'React Native', 'Next.js', 'Node.js',
-              'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML / CSS',
-              'Figma', 'Illustrator', 'Premiere Pro', 'GitHub',
-            ].map((skill, i) => (
-              <motion.span
-                key={skill}
-                className={styles.skillPill}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.03, duration: 0.35, ease }}
-              >
-                {skill}
-              </motion.span>
-            ))}
-          </div>
-        </motion.section>
-
         {/* ===== Contact ===== */}
         <motion.section
           className={styles.contact}
@@ -204,7 +179,7 @@ export default function About() {
             <span className={styles.contactAccent}>together</span>?
           </h2>
           <a href="mailto:Eirikurak@gmail.com" className={styles.contactCta}>
-            Eirikurak@gmail.com →
+            Say hi
           </a>
         </motion.section>
 

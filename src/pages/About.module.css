@@ -7,12 +7,7 @@
 
 /* ===== Hero ===== */
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr);
-  gap: clamp(28px, 5vw, 80px);
-  align-items: end;
   padding-bottom: clamp(52px, 7vw, 92px);
-  border-bottom: 5px solid var(--color-red);
 }
 
 .heroCopy {
@@ -23,7 +18,7 @@
 }
 
 .eyebrow {
-  font-size: clamp(11px, 0.8vw, 13px);
+  font-size: var(--text-micro);
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -86,7 +81,7 @@
   border-radius: 0;
   background: var(--color-yellow-hot);
   color: var(--color-red);
-  font-size: 13px;
+  font-size: var(--text-micro);
   font-weight: 600;
   line-height: 1.25;
   text-transform: uppercase;
@@ -97,24 +92,32 @@
 .contactInfo {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
-  margin-top: 4px;
+  align-items: baseline;
+  gap: 6px 20px;
+  margin-top: 24px;
 }
 
 .contactDetail {
-  font-size: 13px;
-  color: var(--color-red);
+  display: inline-block;
+  padding-bottom: 0.2em;
+  font-family: var(--font-heading);
+  font-size: var(--text-small);
   font-weight: 600;
-  border: 3px solid var(--color-red);
-  border-radius: 0;
-  padding: 8px 12px;
-  background: var(--color-yellow-hot);
+  letter-spacing: 0;
+  color: var(--color-red);
   text-transform: uppercase;
-  transition: color var(--transition-fast);
+}
+
+a.contactDetail {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 2px;
+  transition: background-size 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 a.contactDetail:hover {
-  color: var(--color-text);
+  background-size: 100% 2px;
 }
 
 /* ===== Section ===== */
@@ -165,14 +168,14 @@ a.contactDetail:hover {
 }
 
 .period {
-  font-size: 13px;
+  font-size: var(--text-micro);
   font-weight: 600;
   color: var(--color-red);
   font-variant-numeric: tabular-nums;
 }
 
 .location {
-  font-size: 12px;
+  font-size: var(--text-micro);
   color: var(--color-ink);
 }
 
@@ -193,13 +196,13 @@ a.contactDetail:hover {
 }
 
 .company {
-  font-size: 15px;
+  font-size: var(--text-small);
   font-weight: 600;
   color: var(--color-ink);
 }
 
 .roleDesc {
-  font-size: 15px;
+  font-size: var(--text-small);
   line-height: 1.55;
   color: var(--color-ink);
   margin-top: 8px;
@@ -215,7 +218,7 @@ a.contactDetail:hover {
 }
 
 .bullets li {
-  font-size: 15px;
+  font-size: var(--text-small);
   line-height: 1.55;
   color: var(--color-ink);
   padding-left: 16px;
@@ -224,11 +227,36 @@ a.contactDetail:hover {
 }
 
 .bullets li::before {
-  content: '—';
+  content: '-';
   position: absolute;
   left: 0;
   color: var(--color-red);
-  font-size: 12px;
+  font-size: var(--text-micro);
+}
+
+/* ===== Hairline figure ===== */
+.figureFrame {
+  border: 5px solid var(--color-red);
+  background: var(--color-yellow-hot);
+  box-shadow: 14px 14px 0 var(--color-red);
+  max-width: 640px;
+  aspect-ratio: 400 / 420;
+  overflow: hidden;
+}
+
+.figureIframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .figureFrame {
+    box-shadow: 7px 7px 0 var(--color-red);
+    max-width: 100%;
+  }
 }
 
 /* ===== Skills grid ===== */
@@ -243,7 +271,7 @@ a.contactDetail:hover {
   border-radius: 0;
   border: 3px solid var(--color-red);
   background: var(--color-yellow-hot);
-  font-size: 13px;
+  font-size: var(--text-small);
   font-weight: 600;
   color: var(--color-red);
   letter-spacing: 0;
@@ -258,10 +286,10 @@ a.contactDetail:hover {
 /* ===== Contact ===== */
 .contact {
   padding-top: clamp(72px, 9vw, 132px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 48px);
 }
 
 .contactHeading {
@@ -275,28 +303,36 @@ a.contactDetail:hover {
 }
 
 .contactAccent {
-  font-weight: 300;
-  font-style: italic;
+  font-weight: inherit;
 }
 
 .contactCta {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: clamp(14px, 1.1vw, 18px);
-  font-style: normal;
-  color: var(--color-yellow-hot);
-  border: 3px solid var(--color-red);
-  border-radius: 0;
-  padding: 14px 20px;
-  background: var(--color-red);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-  text-transform: lowercase;
+  display: inline-flex;
+  align-items: baseline;
+  justify-self: end;
+  gap: 0.4em;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 44px);
+  color: var(--color-red);
+  letter-spacing: -0.03em;
+  transition: opacity var(--transition-fast);
+}
+
+.contactCta::after {
+  content: '→';
+  display: inline-block;
+  font-size: 0.75em;
+  line-height: 1;
+  transition: transform var(--transition-fast);
 }
 
 .contactCta:hover {
-  background: var(--color-yellow-hot);
-  color: var(--color-red);
-  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.contactCta:hover::after {
+  transform: translateX(4px);
 }
 
 /* ===== Responsive ===== */
